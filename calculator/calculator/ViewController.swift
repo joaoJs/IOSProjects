@@ -117,7 +117,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
     @IBAction func six(_ sender: Any) {
         DispatchQueue.main.async {
             if let text = self.label.text {
