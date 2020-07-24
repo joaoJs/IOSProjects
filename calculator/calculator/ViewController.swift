@@ -167,7 +167,7 @@ class ViewController: UIViewController {
     @IBAction func dot(_ sender: Any) {
         DispatchQueue.main.async {
             if let text = self.label.text {
-                self.label.text = "\(text) ."
+                self.label.text = self.cleanText == true ? "." : "\(text)."
                 self.cleanText = false
             }
         }
