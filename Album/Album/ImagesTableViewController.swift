@@ -13,6 +13,7 @@ class ImagesTableViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var tableView: UITableView!
     
     var imageCellArray: [ImageCell] = []
+    let segueIdentifier = "MySegue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,15 @@ class ImagesTableViewController: UIViewController, UITableViewDelegate, UITableV
         self.imageCellArray = populateArray()
 
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == self.segueIdentifier {
+            let destination = segue.destination as! DetailViewController
+            destination.img = sender as? ImageCell
+        }
+    }
+    
+    
     
     func populateArray() -> [ImageCell] {
         var tempArray: [ImageCell] = []
@@ -58,6 +68,14 @@ class ImagesTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     func getDate(row: Int) -> String {
         return row >= 9 ? "07/\(row + 1)/2020" : "07/0\(row + 1)/2020"
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let img = imageCellArray[indexPath.row % 6]
+        
+        performSegue(withIdentifier: self.segueIdentifier, sender: img)
+        
     }
     
 }

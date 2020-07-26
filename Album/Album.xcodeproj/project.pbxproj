@@ -15,6 +15,7 @@
 		D82DA04724CCE32F00128CE0 /* ImagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82DA04624CCE32F00128CE0 /* ImagesTableViewController.swift */; };
 		D82DA04924CCE85B00128CE0 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82DA04824CCE85B00128CE0 /* TableViewCell.swift */; };
 		D82DA04D24CCEC1300128CE0 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82DA04C24CCEC1300128CE0 /* ImageCell.swift */; };
+		D82DA05124CDB7C800128CE0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82DA05024CDB7C800128CE0 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		D82DA04624CCE32F00128CE0 /* ImagesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesTableViewController.swift; sourceTree = "<group>"; };
 		D82DA04824CCE85B00128CE0 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		D82DA04C24CCEC1300128CE0 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		D82DA05024CDB7C800128CE0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				D82DA04624CCE32F00128CE0 /* ImagesTableViewController.swift */,
 				D82DA04824CCE85B00128CE0 /* TableViewCell.swift */,
 				D82DA04C24CCEC1300128CE0 /* ImageCell.swift */,
+				D82DA05024CDB7C800128CE0 /* DetailViewController.swift */,
 				D82DA03824CCE2AB00128CE0 /* Main.storyboard */,
 				D82DA03B24CCE2AC00128CE0 /* Assets.xcassets */,
 				D82DA03D24CCE2AC00128CE0 /* LaunchScreen.storyboard */,
@@ -147,6 +150,7 @@
 				D82DA04724CCE32F00128CE0 /* ImagesTableViewController.swift in Sources */,
 				D82DA04924CCE85B00128CE0 /* TableViewCell.swift in Sources */,
 				D82DA03324CCE2AB00128CE0 /* AppDelegate.swift in Sources */,
+				D82DA05124CDB7C800128CE0 /* DetailViewController.swift in Sources */,
 				D82DA03524CCE2AB00128CE0 /* SceneDelegate.swift in Sources */,
 				D82DA04D24CCEC1300128CE0 /* ImageCell.swift in Sources */,
 			);
