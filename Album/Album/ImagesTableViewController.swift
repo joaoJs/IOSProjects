@@ -12,6 +12,7 @@ class ImagesTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var tableView: UITableView!
     
+    var imagenames = ["graph","graph2","graph3","graph4","graph5","graph6"]
     var imageCellArray: [ImageCell] = []
     let segueIdentifier = "MySegue"
     
@@ -20,8 +21,6 @@ class ImagesTableViewController: UIViewController, UITableViewDelegate, UITableV
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        self.imageCellArray = populateArray()
 
     }
     
@@ -31,37 +30,24 @@ class ImagesTableViewController: UIViewController, UITableViewDelegate, UITableV
             destination.img = sender as? ImageCell
         }
     }
-    
-    
-    
-    func populateArray() -> [ImageCell] {
-        var tempArray: [ImageCell] = []
-        
-        let imgCell1 = ImageCell(img: UIImage(named: "graph") ?? UIImage(), titleLabel: "Graph", dateLabel: "07/01/2020", viewBtn: UIButton())
-        let imgCell2 = ImageCell(img: UIImage(named: "graph2") ?? UIImage(), titleLabel: "Graph", dateLabel: "07/01/2020", viewBtn: UIButton())
-        let imgCell3 = ImageCell(img: UIImage(named: "graph3") ?? UIImage(), titleLabel: "Graph", dateLabel: "07/01/2020", viewBtn: UIButton())
-        let imgCell4 = ImageCell(img: UIImage(named: "graph4") ?? UIImage(), titleLabel: "Graph", dateLabel: "07/01/2020", viewBtn: UIButton())
-        let imgCell5 = ImageCell(img: UIImage(named: "graph5") ?? UIImage(), titleLabel: "Graph", dateLabel: "07/01/2020", viewBtn: UIButton())
-        let imgCell6 = ImageCell(img: UIImage(named: "graph6") ?? UIImage(), titleLabel: "Graph", dateLabel: "07/01/2020", viewBtn: UIButton())
-        
-        tempArray.append(imgCell1)
-        tempArray.append(imgCell2)
-        tempArray.append(imgCell3)
-        tempArray.append(imgCell4)
-        tempArray.append(imgCell5)
-        tempArray.append(imgCell6)
-        
-        return tempArray
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 31
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let img = imageCellArray[indexPath.row % 6]
+        let image = UIImage(named: imagenames[indexPath.row % 6])
+        let title = "\(indexPath.row)"
+        let date = getDate(row: indexPath.row)
+        let button = UIButton()
+        
+        let img = ImageCell(img: image ?? UIImage(), title: title, date: date, btn: button)
+        
+        imageCellArray.append(img)
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! TableViewCell
-        cell.populateCell(cellImage: img, cellTitle: "\(indexPath.row)", cellDateLabel: getDate(row: indexPath.row), cellViewButton: UIButton())
+        
+        cell.populateCell(cellImage: img)
         
         return cell
     }

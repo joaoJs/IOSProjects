@@ -15,11 +15,11 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var cellDateLabel: UILabel!
     @IBOutlet weak var cellViewButton: UIButton!
     
-    func populateCell(cellImage: ImageCell, cellTitle: String, cellDateLabel: String, cellViewButton: UIButton) {
+    func populateCell(cellImage: ImageCell) {
         self.cellImage.image = cellImage.img
-        self.cellTitle.text = cellTitle
-        self.cellDateLabel.text = cellDateLabel
-        self.cellViewButton = cellViewButton
+        self.cellTitle.text = cellImage.titleLabel
+        self.cellDateLabel.text = cellImage.dateLabel
+        self.cellViewButton = cellImage.viewBtn
     }
     
 }

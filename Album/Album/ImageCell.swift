@@ -15,11 +15,11 @@ class ImageCell {
     var dateLabel: String
     var viewBtn: UIButton
     
-    init(img: UIImage, titleLabel: String, dateLabel: String, viewBtn: UIButton) {
+    init(img: UIImage, title: String, date: String, btn: UIButton) {
         self.img = img
-        self.titleLabel = titleLabel
-        self.dateLabel = dateLabel
-        self.viewBtn = viewBtn
+        self.titleLabel = title
+        self.dateLabel = date
+        self.viewBtn = btn
     }
     
 }

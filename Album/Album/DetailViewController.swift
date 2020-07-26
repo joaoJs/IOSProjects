@@ -25,7 +25,7 @@ class DetailViewController: UIViewController {
     func setImageDetailsUI() {
         image.image = img?.img
         titleLabel.text = img?.titleLabel
-        dateLabel.text = img?.titleLabel
+        dateLabel.text = img?.dateLabel
         button = img?.viewBtn
     }
 
