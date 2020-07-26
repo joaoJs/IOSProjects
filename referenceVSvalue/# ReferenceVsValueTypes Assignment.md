@@ -14,6 +14,11 @@ Write a flow chart on when it is better to use one vs the other.
     -There will be times you will be expected to desing a system, so it is wise to familiarize yourself with UML diagrams early rather then on the job
 
 
+
+# Reference vs Value types
+
+
+
 Swift. 
 Value Types: Each instance has a unique copy of its data. (Struct, Enum, Tuple)
 Reference type: Instances shate a single copy of the data (Class)
