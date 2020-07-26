@@ -13,7 +13,6 @@ class ImagesTableViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var tableView: UITableView!
     
     var imagenames = ["graph","graph2","graph3","graph4","graph5","graph6"]
-    var imageCellArray: [ImageCell] = []
     let segueIdentifier = "MySegue"
     
     override func viewDidLoad() {
@@ -36,18 +35,18 @@ class ImagesTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let image = UIImage(named: imagenames[indexPath.row % 6])
-        let title = "\(indexPath.row)"
-        let date = getDate(row: indexPath.row)
-        let button = UIButton()
-        
-        let img = ImageCell(img: image ?? UIImage(), title: title, date: date, btn: button)
-        
-        imageCellArray.append(img)
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! TableViewCell
         
-        cell.populateCell(cellImage: img)
+        DispatchQueue.main.async {
+            let image = UIImage(named: self.imagenames[indexPath.row % 6])
+            let title = "\(indexPath.row)"
+            let date = self.getDate(row: indexPath.row)
+            let button = UIButton()
+            
+            let img = ImageCell(img: image ?? UIImage(), title: title, date: date, btn: button)
+            
+            cell.populateCell(cellImage: img)
+        }
         
         return cell
     }
@@ -57,11 +56,16 @@ class ImagesTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let img = imageCellArray[indexPath.row % 6]
-        
-        performSegue(withIdentifier: self.segueIdentifier, sender: img)
-        
+        DispatchQueue.main.async {
+            let image = UIImage(named: self.imagenames[indexPath.row % 6])
+            let title = "\(indexPath.row)"
+            let date = self.getDate(row: indexPath.row)
+            let button = UIButton()
+            
+            let img = ImageCell(img: image ?? UIImage(), title: title, date: date, btn: button)
+
+            self.performSegue(withIdentifier: self.segueIdentifier, sender: img)
+        }
     }
     
 }
