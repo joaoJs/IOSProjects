@@ -44,14 +44,14 @@ class ImagesTableViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
-    func getDate(row: Int) -> String {
-        return row >= 9 ? "07/\(row + 1)/2020" : "07/0\(row + 1)/2020"
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: self.segueIdentifier, sender: self.prepareImg(row: indexPath.row))
         }
+    }
+    
+    func getDate(row: Int) -> String {
+        return row >= 9 ? "07/\(row + 1)/2020" : "07/0\(row + 1)/2020"
     }
     
     func prepareImg(row: Int) -> ImageCell {
