@@ -38,14 +38,7 @@ class ImagesTableViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! TableViewCell
         
         DispatchQueue.main.async {
-            let image = UIImage(named: self.imagenames[indexPath.row % 6])
-            let title = "\(indexPath.row)"
-            let date = self.getDate(row: indexPath.row)
-            let button = UIButton()
-            
-            let img = ImageCell(img: image ?? UIImage(), title: title, date: date, btn: button)
-            
-            cell.populateCell(cellImage: img)
+            cell.populateCell(cellImage: self.prepareImg(row: indexPath.row))
         }
         
         return cell
@@ -57,15 +50,19 @@ class ImagesTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
-            let image = UIImage(named: self.imagenames[indexPath.row % 6])
-            let title = "\(indexPath.row)"
-            let date = self.getDate(row: indexPath.row)
-            let button = UIButton()
-            
-            let img = ImageCell(img: image ?? UIImage(), title: title, date: date, btn: button)
-
-            self.performSegue(withIdentifier: self.segueIdentifier, sender: img)
+            self.performSegue(withIdentifier: self.segueIdentifier, sender: self.prepareImg(row: indexPath.row))
         }
+    }
+    
+    func prepareImg(row: Int) -> ImageCell {
+        let image = UIImage(named: self.imagenames[row % 6])
+        let title = "\(row)"
+        let date = self.getDate(row: row)
+        let button = UIButton()
+        
+        let img = ImageCell(img: image ?? UIImage(), title: title, date: date, btn: button)
+        
+        return img
     }
     
 }
