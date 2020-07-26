@@ -50,8 +50,8 @@
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTu-d0-E3d">
                                                             <rect key="frame" x="0.0" y="41.5" width="184" height="43.5"/>
-                                                            <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <state key="normal" title="view">
+                                                            <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <state key="normal" title="delete">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                         </button>
@@ -73,7 +73,6 @@
                                             <outlet property="cellDateLabel" destination="E9H-Nk-rVq" id="aCG-rL-8aW"/>
                                             <outlet property="cellImage" destination="TSf-HC-iJf" id="NEu-3L-EJO"/>
                                             <outlet property="cellTitle" destination="kBa-dp-r4N" id="6hF-Ow-MR7"/>
-                                            <outlet property="cellViewButton" destination="LTu-d0-E3d" id="4Qr-lU-ZfB"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -134,11 +133,11 @@
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tl1-aG-AVx">
                                         <rect key="frame" x="0.0" y="493" width="398" height="32"/>
-                                        <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="TDO-I6-bHx"/>
                                         </constraints>
-                                        <state key="normal" title="Full Screen">
+                                        <state key="normal" title="delete">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>

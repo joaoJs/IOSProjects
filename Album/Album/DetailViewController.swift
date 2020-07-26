@@ -29,4 +29,6 @@ class DetailViewController: UIViewController {
         button = img?.viewBtn
     }
 
+    @IBAction func pressedButton(_ sender: Any) {
+    }
 }
