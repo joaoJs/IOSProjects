@@ -13,6 +13,8 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
     var tableView: UITableView?
     var images: [String] = ["graph","graph2","graph3","graph4","graph5","graph6"]
     
+    var rowsContent: [UITableViewCell] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
@@ -39,7 +41,7 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 31
+        return self.rowsContent.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -47,12 +49,30 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
             return UITableViewCell()
         }
         
+        
+        
         let img = prepareImg(row: indexPath.row)
         cell.img?.image = img
         cell.titleLabel?.text = "\(indexPath.row)"
         cell.dateLabel?.text = self.getDate(row: indexPath.row)
         
+        self.rowsContent.append(cell)
+        print(self.rowsContent.count)
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            rowsContent.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
