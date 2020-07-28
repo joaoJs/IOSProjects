@@ -6,7 +6,7 @@ View --> The UI. That's the part that the user interacts with. In a basic app it
 
 Controller  --> it is a layer between the view and the model. Usually that is where we have the business logic. The input comes from the view and is used as a data to either alter the models or to alter information on the UI.
 
-Moodel --> Model represents an entity that is used in order to store data. It can be an user for example. It will store state and behavior for the User type. Generally for each Model we have a table in a database. One of the techniques used to facilitate this relationship is ORM (Object Relational Mapping).
+Model --> Model represents an entity that is used in order to store data. It can be an user for example. It will store state and behavior for the User type. Generally for each Model we have a table in a database. One of the techniques used to facilitate this relationship is ORM (Object Relational Mapping).
 
 
 ## Advantages: 
