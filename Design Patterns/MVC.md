@@ -10,12 +10,14 @@ Model --> Model represents an entity that is used in order to store data. It can
 
 
 ## Advantages: 
-MVC is easy to understand and reason about, since each layer (tier) has a very clear purpose. It helps organizing the project, specially by having a folder for the Views, one for the Controllers and onde for the Models. 
+MVC is easy to understand and reason about, since each layer (tier) has a very clear purpose. It helps us organize the project, specially by having a folder for the Views, one for the Controllers and onde for the Models.
+
 Separation of concerns.
-MVC architecture helps us to develop loosely coupled systems.
+
+MVC architecture helps us to develop more loosely coupled systems.
 
 ## Disadantages:
-Controller can grow bigger as the app grows, thus creating a code that is "hard-to-maintain". The more views are added, the more logic will be added to the Main View Controller making the code in the controller long, unreadable and very hard to maintain easily.
+Controller can grow bigger as the app grows, thus creating a code that is "hard-to-maintain". The more views are added, the more logic will be added to the Main View Controller making the code in the controller long, unreadable and very hard to maintain.
 
 As the controller grows, it also stops following the Single Responsibility Principle. 
 
