@@ -135,7 +135,7 @@ extension NetworkManager {
         let damageTotalInfo: [String: [NameLink]] = ["doubleFrom": doubleFromListReturn, "doubleTo": doubleToListReturn, "halfFrom": hFromListReturn, "halfTo": hToListReturn, "nFrom": nFromListReturn, "nTo": nToListReturn]
         
         
-        return PokemonType(damageRelations: damageTotalInfo, gameIndices: returnIndices, generation: returnGen, id: id, moveDamageClass: returnMoveDam, moves: returnMoves, name: name, dragonList: pokemonList)
+        return PokemonType(damageRelations: damageTotalInfo, gameIqndices: returnIndices, generation: returnGen, id: id, moveDamageClass: returnMoveDam, moves: returnMoves, name: name, dragonList: pokemonList)
     }
     
     private func createNameLink(dict: [String: Any]) -> NameLink? {
