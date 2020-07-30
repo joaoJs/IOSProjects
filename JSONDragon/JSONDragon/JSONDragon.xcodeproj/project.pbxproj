@@ -14,9 +14,9 @@
 		D821321F24D223DE00DF5057 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D821321E24D223DE00DF5057 /* Assets.xcassets */; };
 		D821322224D223DE00DF5057 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D821322024D223DE00DF5057 /* LaunchScreen.storyboard */; };
 		D821323124D2248A00DF5057 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821323024D2248A00DF5057 /* Network.swift */; };
-		D821323324D2253D00DF5057 /* SampleJSONDragon.json in Resources */ = {isa = PBXBuildFile; fileRef = D821323224D2253D00DF5057 /* SampleJSONDragon.json */; };
 		D821323524D225AF00DF5057 /* PokemonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821323424D225AF00DF5057 /* PokemonType.swift */; };
 		D821323924D245BF00DF5057 /* DragonCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821323824D245BF00DF5057 /* DragonCellTableViewCell.swift */; };
+		D821326724D2F2D000DF5057 /* SampleJSONDragon.json in Resources */ = {isa = PBXBuildFile; fileRef = D821326624D2F2D000DF5057 /* SampleJSONDragon.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,9 +29,9 @@
 		D821322124D223DE00DF5057 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D821322324D223DE00DF5057 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D821323024D2248A00DF5057 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		D821323224D2253D00DF5057 /* SampleJSONDragon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SampleJSONDragon.json; path = ../../../../../../../Downloads/SampleJSONDragon.json; sourceTree = "<group>"; };
 		D821323424D225AF00DF5057 /* PokemonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonType.swift; sourceTree = "<group>"; };
 		D821323824D245BF00DF5057 /* DragonCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonCellTableViewCell.swift; sourceTree = "<group>"; };
+		D821326624D2F2D000DF5057 /* SampleJSONDragon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SampleJSONDragon.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,8 +105,8 @@
 		D821322F24D2243100DF5057 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				D821326624D2F2D000DF5057 /* SampleJSONDragon.json */,
 				D821323024D2248A00DF5057 /* Network.swift */,
-				D821323224D2253D00DF5057 /* SampleJSONDragon.json */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -169,7 +169,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D821323324D2253D00DF5057 /* SampleJSONDragon.json in Resources */,
+				D821326724D2F2D000DF5057 /* SampleJSONDragon.json in Resources */,
 				D821322224D223DE00DF5057 /* LaunchScreen.storyboard in Resources */,
 				D821321F24D223DE00DF5057 /* Assets.xcassets in Resources */,
 				D821321D24D223DD00DF5057 /* Main.storyboard in Resources */,
