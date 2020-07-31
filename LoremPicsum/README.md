@@ -12,7 +12,7 @@ let images = try self.decoder.decode([Image].self, from: data)
             completion(.success(images))
 ```
 
-it tooke me a while that I needed to pass [Image].self as the first argument for the decode method. 
+it tooke me a while to realize that I needed to pass [Image].self as the first argument for the decode method. 
 
 ## autor 
 
