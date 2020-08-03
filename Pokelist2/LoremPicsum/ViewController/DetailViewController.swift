@@ -39,14 +39,19 @@ class DetailViewController: UIViewController {
     private func setUp(to: String, tt: String) {
         self.view.backgroundColor = UIColor(red: CGFloat(250.0/255.0), green: CGFloat(250.0/255.0), blue: CGFloat(250.0/255.0), alpha: 1.0)
         
+        let scrollView = UIScrollView(frame: .zero)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+//        scrollView.subviews.
+        //scrollView.ali
+        
         //let view = UIView()
         let stackView = UIStackView(frame: .zero)
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fillProportionally
         stackView.spacing = 8.0
         stackView.backgroundColor = UIColor(red: CGFloat(250.0/255.0), green: CGFloat(250.0/255.0), blue: CGFloat(250.0/255.0), alpha: 1.0)
-        
         
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -71,25 +76,40 @@ class DetailViewController: UIViewController {
         typeTwo.font = UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)
         typeTwo.textAlignment = .center
         
-        
         self.view.addSubview(imageView)
-        self.view.addSubview(stackView)
+        self.view.addSubview(scrollView)
+        //scrollView.addSubview(imageView)
+        scrollView.addSubview(stackView)
         stackView.addArrangedSubview(name)
         stackView.addArrangedSubview(typeOne)
         stackView.addArrangedSubview(typeTwo)
         
+        for var i in 0...20{
+            let curry = UILabel(frame: .zero)
+            curry.translatesAutoresizingMaskIntoConstraints = false
+            curry.text = "curry no \(i)"
+            curry.textAlignment = .center
+            stackView.addArrangedSubview(curry)
+            //curry.centerXAnchor.constraint(equalTo: stackView.centerXAnchor)
+        }
         
         imageView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
         imageView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
         imageView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 256).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 256).isActive = true
+        imageView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         
-        stackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
-        stackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor,constant: -8).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
+        scrollView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
         
-        
-        
+        stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 8).isActive = true
+        stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 8).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -8).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor,constant: -8).isActive = true
+        stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         
         self.imageView = imageView
         self.name = name
