@@ -16,9 +16,9 @@ class DetailViewController: UIViewController {
     var typeTwo: UILabel?
     var stackView: UIStackView?
     
-    var tuple: (imageView: UIImage?, name: String, typeOne: String?, typeTwo: String?)?
+    var tuple: (imageView: UIImage?, name: String, typeOne: String?, typeTwo: String?, moves: [Move]?)?
     
-    init(details: (imageView: UIImage?, name: String, typeOne: String?, typeTwo: String?)) {
+    init(details: (imageView: UIImage?, name: String, typeOne: String?, typeTwo: String?, moves: [Move]?)) {
         self.tuple = details
         super.init(nibName: nil, bundle: nil)
     }
@@ -29,22 +29,19 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setUp(to: self.tuple?.typeOne ?? "", tt: self.tuple?.typeTwo ?? "")
+        self.setUp(to: self.tuple?.typeOne ?? "", tt: self.tuple?.typeTwo ?? "", moves: self.tuple?.moves ?? [Move]())
         self.name?.text = self.tuple?.name
         self.typeOne?.text = self.tuple?.typeOne
         self.typeTwo?.text = self.tuple?.typeTwo
         self.imageView?.image = self.tuple?.imageView
     }
     
-    private func setUp(to: String, tt: String) {
+    private func setUp(to: String, tt: String, moves: [Move]) {
         self.view.backgroundColor = UIColor(red: CGFloat(250.0/255.0), green: CGFloat(250.0/255.0), blue: CGFloat(250.0/255.0), alpha: 1.0)
         
         let scrollView = UIScrollView(frame: .zero)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-//        scrollView.subviews.
-        //scrollView.ali
         
-        //let view = UIView()
         let stackView = UIStackView(frame: .zero)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -78,19 +75,18 @@ class DetailViewController: UIViewController {
         
         self.view.addSubview(imageView)
         self.view.addSubview(scrollView)
-        //scrollView.addSubview(imageView)
         scrollView.addSubview(stackView)
         stackView.addArrangedSubview(name)
         stackView.addArrangedSubview(typeOne)
         stackView.addArrangedSubview(typeTwo)
         
-        for var i in 0...20{
-            let curry = UILabel(frame: .zero)
-            curry.translatesAutoresizingMaskIntoConstraints = false
-            curry.text = "curry no \(i)"
-            curry.textAlignment = .center
-            stackView.addArrangedSubview(curry)
-            //curry.centerXAnchor.constraint(equalTo: stackView.centerXAnchor)
+        
+        moves.forEach{ move in
+            let currMove = UILabel(frame: .zero)
+            currMove.translatesAutoresizingMaskIntoConstraints = false
+            currMove.text = move.move.name
+            currMove.textAlignment = .center
+            stackView.addArrangedSubview(currMove)
         }
         
         imageView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true

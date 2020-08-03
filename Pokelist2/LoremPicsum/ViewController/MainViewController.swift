@@ -146,6 +146,7 @@ extension MainViewController: UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let name = pokes[indexPath.row].name
+        let moves: [Move] = pokash[name]?.moves ?? [Move]()
         
         DispatchQueue.main.async {
             let rowImg: UIImage? = self.pokash[name]?.sprite
@@ -163,7 +164,7 @@ extension MainViewController: UITableViewDataSource {
                 
             }
             
-            let vc = DetailViewController(details: (imageView: rowImg, name: name, typeOne: typeOne, typeTwo: typeTwo))
+            let vc = DetailViewController(details: (imageView: rowImg, name: name, typeOne: typeOne, typeTwo: typeTwo, moves: moves))
             self.navigationController?.pushViewController(vc, animated: false)
         }
         
