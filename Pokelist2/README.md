@@ -1,6 +1,6 @@
 # Pokelist
 
-Little project that uses the pokemon api.
+Little project that uses the pokemon api. The name is Lorem Picsum becase I duplicated the project lorem picsum to help at the start. 
 
 The project uses codable to decode the json that comes as a response from the request. 
 
