@@ -67,21 +67,20 @@ extension MainViewController: UITableViewDataSource {
         // check is there is cached value
         if (self.pokash[name] != nil) {
             guard let types = pokash[name]?.types else { return UITableViewCell() }
-            if types.count > 1 {
-                DispatchQueue.main.async {
-                    cell.typeOne?.text = types[0].type.name
-                    cell.typeOne?.textColor = Helpers.getTypeColor(type: types[0].type.name)
-                    cell.typeTwo?.text = types[1].type.name
-                    cell.typeTwo?.textColor = Helpers.getTypeColor(type: types[1].type.name)
-                }
-            } else {
-                DispatchQueue.main.async {
-                    cell.typeOne?.text = types[0].type.name
-                    cell.typeOne?.textColor = Helpers.getTypeColor(type: types[0].type.name)
-                    cell.typeTwo?.text = ""
-                }
-            }
             DispatchQueue.main.async {
+                if types.count > 1 {
+                        cell.typeOne?.text = types[0].type.name
+                        cell.typeOne?.textColor = Helpers.getTypeColor(type: types[0].type.name)
+                        cell.typeTwo?.text = types[1].type.name
+                        cell.typeTwo?.textColor = Helpers.getTypeColor(type: types[1].type.name)
+                    
+                } else {
+                        cell.typeOne?.text = types[0].type.name
+                        cell.typeOne?.textColor = Helpers.getTypeColor(type: types[0].type.name)
+                        cell.typeTwo?.text = ""
+                    
+                }
+           
                 cell.img?.image = self.pokash[name]?.sprite ?? UIImage(named: "graph")
             }
             
