@@ -69,25 +69,23 @@ extension MainViewController: UITableViewDataSource {
             guard let types = pokash[name]?.types else { return UITableViewCell() }
             DispatchQueue.main.async {
                 if types.count > 1 {
-                        cell.typeOne?.text = types[0].type.name
-                        cell.typeOne?.textColor = Helpers.getTypeColor(type: types[0].type.name)
-                        cell.typeTwo?.text = types[1].type.name
-                        cell.typeTwo?.textColor = Helpers.getTypeColor(type: types[1].type.name)
+                    cell.typeOne?.text = types[0].type.name
+                    cell.typeOne?.textColor = Helpers.getTypeColor(type: types[0].type.name)
+                    cell.typeTwo?.text = types[1].type.name
+                    cell.typeTwo?.textColor = Helpers.getTypeColor(type: types[1].type.name)
                     
                 } else {
-                        cell.typeOne?.text = types[0].type.name
-                        cell.typeOne?.textColor = Helpers.getTypeColor(type: types[0].type.name)
-                        cell.typeTwo?.text = ""
+                    cell.typeOne?.text = types[0].type.name
+                    cell.typeOne?.textColor = Helpers.getTypeColor(type: types[0].type.name)
+                    cell.typeTwo?.text = ""
                     
                 }
-           
+                
                 cell.img?.image = self.pokash[name]?.sprite ?? UIImage(named: "graph")
+                // abilities and moves are also cached
             }
             
-            //            let abilities = pokash[name]?.abilities
-            //            let moves = pokash[name]?.moves
-            
-        } else { // if value not in cache, add it to cache
+        } else { // if value not in cache, get it and add it to cache
             
             NetworkManager.shared.fetchInfo(name: name) { result in
                 switch result {
@@ -156,18 +154,11 @@ extension MainViewController: UITableViewDataSource {
             let typeTwo: String?
             
             if types?.count ?? [Type]().count > 1 {
-                //typeOne = UILabel()
                 typeOne = types?[0].type.name
-                //typeOne?.textColor = Helpers.getTypeColor(type: types?[0].type.name ?? "???")
-                //typeTwo = UILabel()
                 typeTwo = types?[1].type.name
-                //typeTwo?.textColor = Helpers.getTypeColor(type: types?[1].type.name ?? "???")
                 
             } else {
-                //typeOne = UILabel()
                 typeOne = types?[0].type.name
-                //typeOne?.textColor = Helpers.getTypeColor(type: types?[0].type.name ?? "???")
-                //typeTwo = UILabel()
                 typeTwo = ""
                 
             }
