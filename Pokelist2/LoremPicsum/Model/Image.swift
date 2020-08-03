@@ -84,24 +84,3 @@ struct PokeInfoCached {
         self.moves = pokeInfo.moves
     }
 }
-
-enum MetadataType: Codable {
-    case string(String)
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        do {
-            self = try .string(container.decode(String.self))
-        } catch DecodingError.typeMismatch {
-            throw DecodingError.typeMismatch(MetadataType.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Encoded payload not of an expected type"))
-        }
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .string(let string):
-            try container.encode(string)
-        }
-    }
-}
