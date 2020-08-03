@@ -1,18 +1,13 @@
-# Lorem Picsum
+# Pokelist
 
-Little project that uses the lorem picsum api to fetch images. 
+Little project that uses the pokemon api.
 
 The project uses codable to decode the json that comes as a response from the request. 
 
-The most difficult part for me was 
-
-
-```swift
-let images = try self.decoder.decode([Image].self, from: data)
-            completion(.success(images))
-```
-
-it tooke me a while to realize that I needed to pass [Image].self as the first argument for the decode method. 
+There are some bugs still. Sometimes the images are not fetched correctly. 
+I also still need to make the pictures load on demand (lazyload) and add the list of moves and abilities to the detail view.
+I need a bit of extra time to do that. I spent a lot of time working trying to cache the data and changing the color of the types. 
+Setting up the detail view layout was not easy either.
 
 ## autor 
 
