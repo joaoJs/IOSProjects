@@ -1,7 +1,7 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
-
+    
     static let reuseId: String = "MyCell"
     
     //var id: UILabel?
@@ -10,10 +10,10 @@ class TableViewCell: UITableViewCell {
     var typeTwo: UILabel?
     var img: UIImageView?
     
-     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-           super.init(style: style, reuseIdentifier: reuseIdentifier)
-           self.setUp()
-       }
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.setUp()
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -74,7 +74,7 @@ class TableViewCell: UITableViewCell {
         typeTwo.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16).isActive = true
         typeTwo.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -32).isActive = true
         typeTwo.heightAnchor.constraint(equalToConstant: 32).isActive = true
-            
+        
         self.img = imageView
         self.name = name
         self.typeOne = typeOne

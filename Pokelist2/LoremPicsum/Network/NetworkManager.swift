@@ -49,9 +49,9 @@ extension NetworkManager {
                 return
             }
             
-           do {
-            let dataObj = try self.decoder.decode(ResponseObj.self, from: data)
-            completion(.success(dataObj))
+            do {
+                let dataObj = try self.decoder.decode(ResponseObj.self, from: data)
+                completion(.success(dataObj))
             } catch {
                 print(error.localizedDescription)
                 completion(.failure(.decodeError))
@@ -82,10 +82,10 @@ extension NetworkManager {
                 return
             }
             
-//            let image = UIImage(data: data)
-//            completion(.success(image))
+            //            let image = UIImage(data: data)
+            //            completion(.success(image))
             do {
-            let info = try self.decoder.decode(PokeForm.self, from: data)
+                let info = try self.decoder.decode(PokeForm.self, from: data)
                 completion(.success(info.sprites))
             } catch {
                 print(error.localizedDescription)
@@ -98,59 +98,59 @@ extension NetworkManager {
     
     func fetchInfo(name: String, completion: @escaping InfoHandler) {
         guard let url = URL(string: baseUrl + name) else {
-                    completion(.failure(.badURL))
-                    return
-                }
-                
-                self.session.dataTask(with: url) { (data, response, error) in
-                    
-                    if let error = error {
-                        print("first info eror")
-                        completion(.failure(.serverError(error.localizedDescription)))
-                        return
-                    }
-                    
-                    guard let data = data else {
-                        print("data info eror")
-                        completion(.failure(.badData))
-                        return
-                    }
-                    
-                    do {
-                    let info = try self.decoder.decode(PokeInfo.self, from: data)
-                        completion(.success(info))
-                    } catch {
-                        print(error.localizedDescription)
-                        completion(.failure(.decodeError))
-                    }
-                    
-                }.resume()
-    }
-    
-    func fetchSprite(spriteUrl: String, completion: @escaping SpriteHandler) {
+            completion(.failure(.badURL))
+            return
+        }
+        
+        self.session.dataTask(with: url) { (data, response, error) in
             
-            guard let url = URL(string: spriteUrl) else {
-                completion(.failure(.badURL))
+            if let error = error {
+                print("first info eror")
+                completion(.failure(.serverError(error.localizedDescription)))
                 return
             }
             
-            self.session.dataTask(with: url) { (data, response, error) in
-                
-                if let error = error {
-                    completion(.failure(.serverError(error.localizedDescription)))
-                    return
-                }
-                
-                guard let data = data else {
-                    completion(.failure(.badData))
-                    return
-                }
-                
-                let image = UIImage(data: data)
-                completion(.success(image))
-                
-            }.resume()
+            guard let data = data else {
+                print("data info eror")
+                completion(.failure(.badData))
+                return
+            }
             
+            do {
+                let info = try self.decoder.decode(PokeInfo.self, from: data)
+                completion(.success(info))
+            } catch {
+                print(error.localizedDescription)
+                completion(.failure(.decodeError))
+            }
+            
+        }.resume()
+    }
+    
+    func fetchSprite(spriteUrl: String, completion: @escaping SpriteHandler) {
+        
+        guard let url = URL(string: spriteUrl) else {
+            completion(.failure(.badURL))
+            return
         }
+        
+        self.session.dataTask(with: url) { (data, response, error) in
+            
+            if let error = error {
+                completion(.failure(.serverError(error.localizedDescription)))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let image = UIImage(data: data)
+            completion(.success(image))
+            
+        }.resume()
+        
+    }
     
 }

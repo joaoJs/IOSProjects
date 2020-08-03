@@ -19,7 +19,7 @@ extension NetworkError: LocalizedError {
             return NSLocalizedString(description, comment: "Server Error")
         case .decodeError:
             return NSLocalizedString("Decoding Failure, the data could not be decoded to the model", comment: "Decode Failure")
-         
+            
         }
     }
     

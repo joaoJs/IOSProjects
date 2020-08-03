@@ -87,7 +87,7 @@ struct PokeInfoCached {
 
 enum MetadataType: Codable {
     case string(String)
-
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         do {
@@ -96,7 +96,7 @@ enum MetadataType: Codable {
             throw DecodingError.typeMismatch(MetadataType.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Encoded payload not of an expected type"))
         }
     }
-
+    
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
