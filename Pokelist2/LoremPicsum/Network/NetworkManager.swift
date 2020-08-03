@@ -11,14 +11,16 @@ typealias InfoHandler = (Result<PokeInfo, NetworkError>) -> ()
 typealias SpriteHandler = (Result<UIImage?, NetworkError>) -> ()
 
 final class NetworkManager {
-    
+
     static let shared = NetworkManager()
     
     var session: URLSession
     var decoder: JSONDecoder
+    var cache: ImageCache
     
-    private init(session: URLSession = URLSession.shared, decoder: JSONDecoder = JSONDecoder()) {
+    private init(session: URLSession = URLSession.shared, imageCache: ImageCache = ImageCache.sharedCache, decoder: JSONDecoder = JSONDecoder()) {
         self.session = session
+        self.cache = imageCache
         self.decoder = decoder
     }
     
@@ -127,7 +129,14 @@ extension NetworkManager {
         }.resume()
     }
     
-    func fetchSprite(spriteUrl: String, completion: @escaping SpriteHandler) {
+    func fetchSprite(name: String, spriteUrl: String, completion: @escaping SpriteHandler) {
+        
+        if let data = self.cache.get(name: name) {
+            print("Image From Cache")
+            let image = UIImage(data: data)
+            completion(.success(image))
+            return
+        }
         
         guard let url = URL(string: spriteUrl) else {
             completion(.failure(.badURL))
@@ -146,6 +155,8 @@ extension NetworkManager {
                 return
             }
             
+            print("Image from network")
+            self.cache.set(data: data, name: name)
             let image = UIImage(data: data)
             completion(.success(image))
             

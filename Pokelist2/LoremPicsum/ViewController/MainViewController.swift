@@ -3,6 +3,8 @@ import UIKit
 class MainViewController: UIViewController, UITableViewDelegate {
     
     var tableView: UITableView?
+    
+    var cache: ImageCache = ImageCache.sharedCache
     var pokes: [Pokemon] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -81,19 +83,25 @@ extension MainViewController: UITableViewDataSource {
                     
                 }
                 
-                cell.img?.image = self.pokash[name]?.sprite ?? UIImage(named: "graph")
+                var rowImg: UIImage?
+                if let data = self.cache.get(name: name) {
+                    print("Image From Cache")
+                    rowImg = UIImage(data: data)
+                }
+                cell.img?.image = rowImg ?? UIImage(named: "graph")
+                //cell.img?.image = self.cache[name]?.sprite ?? UIImage(named: "graph")
+                //cell.img?.image = self.pokash[name]?.sprite ?? UIImage(named: "graph")
                 // abilities and moves are also cached
             }
             
         } else { // if value not in cache, get it and add it to cache
             
-            NetworkManager.shared.fetchInfo(name: name) { result in
+            NetworkManager.shared.fetchInfo(name: name) { [weak self] result in
                 switch result {
                 case .success(let info):
-                    print(name)
                     let types = info.types
                     let pokashData = PokeInfoCached(pokeInfo: info)
-                    self.pokash[name] = pokashData
+                    self?.pokash[name] = pokashData
                     if types.count > 1 {
                         DispatchQueue.main.async {
                             cell.typeOne?.text = types[0].type.name
@@ -118,11 +126,12 @@ extension MainViewController: UITableViewDataSource {
                 case .success(let sprites):
                     let url = sprites["front_default"]
                     //self.pokash[name]?.spriteUrl = url
-                    NetworkManager.shared.fetchSprite(spriteUrl: url ?? self.defSprite) { result in
+                    NetworkManager.shared.fetchSprite(name: name, spriteUrl: url ?? self.defSprite) { result in
                         switch result {
                         case .success(let image):
                             DispatchQueue.main.async {
-                                self.pokash[name]?.sprite = image
+                                //self.pokash[name]?.sprite = image
+                                //elf.cache.set(data: image, url: url)
                                 cell.img?.image = image ?? UIImage(named: "graph")
                             }
                         case .failure(let error):
@@ -149,7 +158,12 @@ extension MainViewController: UITableViewDataSource {
         let moves: [Move] = pokash[name]?.moves ?? [Move]()
         
         DispatchQueue.main.async {
-            let rowImg: UIImage? = self.pokash[name]?.sprite
+            //let rowImg: UIImage? = self.pokash[name]?.sprite
+            var rowImg: UIImage?
+            if let data = self.cache.get(name: name) {
+                print("Image From Cache")
+                rowImg = UIImage(data: data)
+            }
             let types = self.pokash[name]?.types
             let typeOne: String?
             let typeTwo: String?
@@ -162,6 +176,10 @@ extension MainViewController: UITableViewDataSource {
                 typeOne = types?[0].type.name
                 typeTwo = ""
                 
+            }
+            
+            if (rowImg == nil) {
+                rowImg = UIImage(named: "graph")
             }
             
             let vc = DetailViewController(details: (imageView: rowImg, name: name, typeOne: typeOne, typeTwo: typeTwo, moves: moves))

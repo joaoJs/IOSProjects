@@ -76,7 +76,7 @@ struct PokeInfoCached {
     var types: [Type]
     var abilities: [Ability]
     var moves: [Move]
-    var sprite: UIImage?
+    //var sprite: UIImage?
     
     init(pokeInfo: PokeInfo) {
         self.types = pokeInfo.types
