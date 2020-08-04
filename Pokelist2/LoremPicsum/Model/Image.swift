@@ -19,7 +19,7 @@ struct Pokemon: Codable {
     }
 }
 
-
+// for some reason codable didn't work with camel case names
 struct PokeForm: Codable {
     var sprites: [String: String]
     
