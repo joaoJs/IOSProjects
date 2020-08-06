@@ -16,6 +16,7 @@
 		D82C8C5E24DC7B2B004E95D3 /* Networkmanager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C8C5D24DC7B2B004E95D3 /* Networkmanager.swift */; };
 		D82C8C6024DC7BD3004E95D3 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C8C5F24DC7BD3004E95D3 /* Pokemon.swift */; };
 		D82C8C6224DC7C22004E95D3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C8C6124DC7C22004E95D3 /* NetworkError.swift */; };
+		D82C8C6624DCBCB1004E95D3 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C8C6524DCBCB1004E95D3 /* Cache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		D82C8C5D24DC7B2B004E95D3 /* Networkmanager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networkmanager.swift; sourceTree = "<group>"; };
 		D82C8C5F24DC7BD3004E95D3 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		D82C8C6124DC7C22004E95D3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		D82C8C6524DCBCB1004E95D3 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 			children = (
 				D82C8C5D24DC7B2B004E95D3 /* Networkmanager.swift */,
 				D82C8C6124DC7C22004E95D3 /* NetworkError.swift */,
+				D82C8C6524DCBCB1004E95D3 /* Cache.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			files = (
 				D82C8C5A24DC7403004E95D3 /* MainViewController.swift in Sources */,
 				D82C8C6224DC7C22004E95D3 /* NetworkError.swift in Sources */,
+				D82C8C6624DCBCB1004E95D3 /* Cache.swift in Sources */,
 				D82C8C5C24DC773E004E95D3 /* MyTableViewCell.swift in Sources */,
 				D82C8C4124DC7368004E95D3 /* AppDelegate.swift in Sources */,
 				D82C8C5E24DC7B2B004E95D3 /* Networkmanager.swift in Sources */,

@@ -84,37 +84,38 @@ extension MainViewController: UITableViewDataSource {
         
         let name = self.pokes[indexPath.row].name
         
-        if (self.imagesDict[name] != nil) {
-            DispatchQueue.main.async {
-                cell.textLabel?.text = name
-                cell.imageView?.image = self.imagesDict[name]
-            }
-        } else {
-            NetworkManager.shared.fetchForm(name: name) { [weak self] result in
-                guard let self = self else { return }
-                switch result {
-                case .success(let sprite):
-                    let spriteUrl = sprite["front_default"]
-                    NetworkManager.shared.fetchSprite(/*name: <#T##String#>,*/ spriteUrl: spriteUrl ?? self.defSprite) { [weak self] result in
-                        guard let self = self else { return }
-                        switch result {
-                        case .success(let img):
-                            DispatchQueue.main.async {
-                                cell.textLabel?.text = name
-                                self.imagesDict[name] = img
-                                cell.imageView?.image = img
-                            }
-                        case .failure(let error):
-                            print("error fetchImg")
-                            print(error)
+        // cache using dictionary
+        //        if (self.imagesDict[name] != nil) {
+        //            DispatchQueue.main.async {
+        //                cell.textLabel?.text = name
+        //                cell.imageView?.image = self.imagesDict[name]
+        //            }
+        //        } else {
+        NetworkManager.shared.fetchForm(name: name) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let sprite):
+                let spriteUrl = sprite["front_default"]
+                NetworkManager.shared.fetchSprite(name: name, spriteUrl: spriteUrl ?? self.defSprite) { [weak self] result in
+                    guard let self = self else { return }
+                    switch result {
+                    case .success(let img):
+                        DispatchQueue.main.async {
+                            cell.textLabel?.text = name
+                            //self.imagesDict[name] = img
+                            cell.imageView?.image = img
                         }
+                    case .failure(let error):
+                        print("error fetchImg")
+                        print(error)
                     }
-                case .failure(let error):
-                    print("error fetchForm")
-                    print(error)
                 }
+            case .failure(let error):
+                print("error fetchForm")
+                print(error)
             }
         }
+        //}
         
         return cell
     }
