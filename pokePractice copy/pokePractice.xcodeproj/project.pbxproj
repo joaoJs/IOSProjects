@@ -17,6 +17,7 @@
 		D82C8C6024DC7BD3004E95D3 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C8C5F24DC7BD3004E95D3 /* Pokemon.swift */; };
 		D82C8C6224DC7C22004E95D3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C8C6124DC7C22004E95D3 /* NetworkError.swift */; };
 		D82C8C6624DCBCB1004E95D3 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C8C6524DCBCB1004E95D3 /* Cache.swift */; };
+		D82C8C6824DCC173004E95D3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C8C6724DCC173004E95D3 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		D82C8C5F24DC7BD3004E95D3 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		D82C8C6124DC7C22004E95D3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		D82C8C6524DCBCB1004E95D3 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		D82C8C6724DCC173004E95D3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				D82C8C5924DC7403004E95D3 /* MainViewController.swift */,
+				D82C8C6724DCC173004E95D3 /* DetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D82C8C6824DCC173004E95D3 /* DetailViewController.swift in Sources */,
 				D82C8C5A24DC7403004E95D3 /* MainViewController.swift in Sources */,
 				D82C8C6224DC7C22004E95D3 /* NetworkError.swift in Sources */,
 				D82C8C6624DCBCB1004E95D3 /* Cache.swift in Sources */,

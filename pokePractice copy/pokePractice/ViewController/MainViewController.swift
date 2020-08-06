@@ -128,6 +128,43 @@ extension MainViewController: UITableViewDelegate {
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        // let moves: [Move] = pokash[name]?.moves ?? [Move]()
+        
+        DispatchQueue.main.async {
+            //let rowImg: UIImage? = self.pokash[name]?.sprite
+            //var rowImg: UIImage?
+//            if let data = self.cache.get(name: name) {
+//                print("Image From Cache")
+//                rowImg = UIImage(data: data)
+//            }
+//            let types = self.pokash[name]?.types
+//            let typeOne: String?
+//            let typeTwo: String?
+//
+//            if types?.count ?? [Type]().count > 1 {
+//                typeOne = types?[0].type.name
+//                typeTwo = types?[1].type.name
+//
+//            } else {
+//                typeOne = types?[0].type.name
+//                typeTwo = ""
+//
+//            }
+//
+//            if (rowImg == nil) {
+//                rowImg = UIImage(named: "graph")
+//            }
+            
+//            let vc = DetailViewController(details: (imageView: rowImg, name: name, typeOne: typeOne, typeTwo: typeTwo, moves: moves))
+            let name = self.pokes[indexPath.row].name
+            let vc = DetailViewController(nameFromCell: name)
+            self.navigationController?.pushViewController(vc, animated: false)
+        }
+        
+    }
+    
 }
 
 extension MainViewController: UITableViewDataSourcePrefetching {
