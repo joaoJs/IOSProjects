@@ -33,25 +33,9 @@ class DetailViewController: UIViewController {
     private func setUp(genres: [Genre]) {
         
         
-        self.view.backgroundColor = UIColor(red: CGFloat(10.0/255.0), green: CGFloat(0.0/255.0), blue: CGFloat(40.0/255.0), alpha: 1.0)
-        
-        //        let scrollView = UIScrollView(frame: .zero)
-        //        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        //        scrollView.backgroundColor = .blue
-//        let containerSV = UIStackView(frame: .zero)
-//        containerSV.translatesAutoresizingMaskIntoConstraints = false
-//        containerSV.axis = .vertical
-//        containerSV.alignment = .fill
-//        containerSV.distribution = .fillProportionally
-//        containerSV.spacing = 8.0
-        
-        
-//        let stackView = UIStackView(frame: .zero)
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        stackView.axis = .vertical
-//        stackView.alignment = .fill
-//        stackView.distribution = .fillProportionally
-//        stackView.spacing = 8.0
+        let colorOne = UIColor(red: CGFloat(10.0/255.0), green: CGFloat(0.0/255.0), blue: CGFloat(120.0/255.0), alpha: 1.0)
+        let colorTwo = UIColor(red: CGFloat(10.0/255.0), green: CGFloat(0.0/255.0), blue: CGFloat(40.0/255.0), alpha: 1.0)
+        self.view.setGradientBackground(colorOne: colorOne, colorTwo: colorTwo)
         
         let midSV = UIStackView(frame: .zero)
         midSV.translatesAutoresizingMaskIntoConstraints = false
@@ -73,15 +57,11 @@ class DetailViewController: UIViewController {
         bottomSV.alignment = .fill
         bottomSV.distribution = .fillProportionally
         bottomSV.spacing = 8.0
-        //        stackView.backgroundColor = UIColor(red: CGFloat(250.0/255.0), green: CGFloat(250.0/255.0), blue: CGFloat(250.0/255.0), alpha: 1.0)
+        
         
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        //        imageView.image = UIImage(named: "itunes")
-//        imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
-//        imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
         
-        //imageView.scalesLargeContentImage = true
         
         let albumName = UILabel(frame: .zero)
         albumName.translatesAutoresizingMaskIntoConstraints = false
@@ -108,10 +88,7 @@ class DetailViewController: UIViewController {
         
         let heartIcon = UIImageView(frame: .zero)
         heartIcon.translatesAutoresizingMaskIntoConstraints = false
-        //heartIcon.image = UIImage(named: "heart")
-//        heartIcon.sizeToFit()
-        //heartIcon.sizeThatFits(CGSize(width: 20, height: 20))
-//        heartIcon.
+        
         heartIcon.widthAnchor.constraint(equalToConstant: 40).isActive = true
         heartIcon.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
@@ -128,12 +105,7 @@ class DetailViewController: UIViewController {
         
         //self.view.addSubview(heartIcon)
         self.view.addSubview(bottomSV)
-        //        scrollView.addArrangedSubview(imageView)
-        //        scrollView.addArrangedSubview(albumName)
-        //        scrollView.addArrangedSubview(artistName)
-        //        scrollView.addArrangedSubview(date)
-        //        scrollView.addArrangedSubview(heartIcon)
-        
+       
         
         genres.forEach{ genre in
             let currGenre = UILabel(frame: .zero)
@@ -147,18 +119,7 @@ class DetailViewController: UIViewController {
 
         }
         
-        //        imageView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
-        //        imageView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
-        //        imageView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
-        //        imageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        //        imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        
-//        stackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
-//        stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
-//        stackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
-//        stackView.bottomAnchor.constraint(equalTo: heartIcon.topAnchor, constant: -32).isActive = true
-        
-        //imageView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
+       
         imageView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
         //imageView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
         //imageView.bottomAnchor.constraint(equalTo: midSV.topAnchor, constant: -32).isActive = true
@@ -181,18 +142,7 @@ class DetailViewController: UIViewController {
         bottomSV.topAnchor.constraint(equalTo: midBottomSV.bottomAnchor, constant: 32).isActive = true
         bottomSV.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
         bottomSV.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        //bottomSV.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -32).isActive = true
         
-        //        stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 8).isActive = true
-        //        stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 8).isActive = true
-        //        stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -8).isActive = true
-        //        stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor,constant: -8).isActive = true
-        //stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        
-        //        imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        //        imageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        
-        //imageView.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true
         
         self.imageView = imageView
         self.artistName = artistName

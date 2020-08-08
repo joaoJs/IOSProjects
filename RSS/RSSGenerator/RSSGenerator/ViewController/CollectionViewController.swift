@@ -40,8 +40,13 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.reuseId)
-        collectionView.backgroundColor = UIColor(red: CGFloat(10.0/255.0), green: CGFloat(0.0/255.0), blue: CGFloat(40.0/255.0), alpha: 1.0)
-        //collectionView.backgroundColor = .white
+        
+        collectionView.backgroundColor = UIColor(red: CGFloat(10.0/255.0), green: CGFloat(0.0/255.0), blue: CGFloat(40.0/255.0), alpha: 0.0)
+        let colorOne = UIColor(red: CGFloat(40.0/255.0), green: CGFloat(0.0/255.0), blue: CGFloat(120.0/255.0), alpha: 1.0)
+        let colorTwo = UIColor(red: CGFloat(10.0/255.0), green: CGFloat(0.0/255.0), blue: CGFloat(40.0/255.0), alpha: 1.0)
+        
+         self.view.setGradientBackground(colorOne: colorOne, colorTwo: colorTwo)
+        
         
         self.view.addSubview(collectionView)
         
@@ -49,8 +54,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         collectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
-        //        collectionView.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        //        collectionView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        
         
         self.collectionView = collectionView
     }
@@ -92,15 +96,6 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         
         return cell
-        
-        //        cell.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        //        cell.heightAnchor.constraint(equalToConstant: 120).isActive = true
-        //cell.albumImage?.image = self.albums[indexPath.row].artworkUrl100
-        //        cell.albumImage?.image = albumImage ?? UIImage(named: "itunes")
-        //        cell.artistName?.text = self.albums[indexPath.row].artistName
-        //        cell.albumName?.text = self.albums[indexPath.row].name
-        //
-        //        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
