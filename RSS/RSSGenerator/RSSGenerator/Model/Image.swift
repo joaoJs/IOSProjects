@@ -23,35 +23,37 @@ struct Album: Codable {
     
     var artistName: String?
     var id: String
-    //var releaseDate: String
+    var releaseDate: String
     var name: String?
 //    var kind: String
 //    var copyright: String
 //    var artistId: String
 //    var artistUrl: String
     var artworkUrl100: String?
-    //var genres: [Genre]
+    var genres: [Genre]
     //var url: String
     
     enum CodingKeys: String, CodingKey {
         case artistName,
              id,
-//             releaseDate,
+             releaseDate,
              name,
 //             kind,
 //             copyright,
 //             artistId,
 //             artistUrl,
-             artworkUrl100
-//             genres,
+             artworkUrl100,
+             genres
 //             url
     }
 }
 
 struct Genre: Codable {
-    var genreId: String
     var name: String
-    var url: String
+
+    enum CodingKeys: String, CodingKey {
+        case name
+    }
 }
 
 //{

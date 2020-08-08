@@ -49,9 +49,9 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         collectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
-//        collectionView.widthAnchor.constraint(equalToConstant: 120).isActive = true
-//        collectionView.heightAnchor.constraint(equalToConstant: 120).isActive = true
-            
+        //        collectionView.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        //        collectionView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        
         self.collectionView = collectionView
     }
     
@@ -67,9 +67,9 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         let albumId = self.albums[indexPath.row].id
         //var albumImage: UIImage?
         
-        if (imagesDict[albumId] != nil) {
+        if (self.imagesDict[albumId] != nil) {
             //albumImage = imagesDict[albumId]
-            cell.albumImage?.image = imagesDict[albumId]
+            cell.albumImage?.image = self.imagesDict[albumId]
             cell.artistName?.text = self.albums[indexPath.row].artistName
             cell.albumName?.text = self.albums[indexPath.row].name
             return cell
@@ -93,20 +93,38 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         
         return cell
         
-//        cell.widthAnchor.constraint(equalToConstant: 120).isActive = true
-//        cell.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        //        cell.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        //        cell.heightAnchor.constraint(equalToConstant: 120).isActive = true
         //cell.albumImage?.image = self.albums[indexPath.row].artworkUrl100
-//        cell.albumImage?.image = albumImage ?? UIImage(named: "itunes")
-//        cell.artistName?.text = self.albums[indexPath.row].artistName
-//        cell.albumName?.text = self.albums[indexPath.row].name
-//
-//        return cell
+        //        cell.albumImage?.image = albumImage ?? UIImage(named: "itunes")
+        //        cell.artistName?.text = self.albums[indexPath.row].artistName
+        //        cell.albumName?.text = self.albums[indexPath.row].name
+        //
+        //        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //collectionView.deselectRow(at: indexPath, animated: true)
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        DispatchQueue.main.async {
+            let albumId = self.albums[indexPath.row].id
+            let albumName = self.albums[indexPath.row].name
+            let artistName = self.albums[indexPath.row].artistName
+            let date = self.albums[indexPath.row].releaseDate
+            let genres = self.albums[indexPath.row].genres
+            let albumImage = self.imagesDict[albumId]
+            let heartImage = UIImage(named: "heart")
+            
+            let vc = DetailViewController(details: (imageView: albumImage , artistName: artistName, albumName: albumName, listOfGenres: genres, dateOfRelease: date, heartImg: heartImage))
+            self.navigationController?.pushViewController(vc, animated: false)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 150, height: 150)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }

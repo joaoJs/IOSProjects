@@ -19,6 +19,7 @@
 		D82C8CC624DEF20C004E95D3 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C8CC524DEF20C004E95D3 /* Helpers.swift */; };
 		D82C8CC924DEF348004E95D3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C8CC824DEF348004E95D3 /* NetworkManager.swift */; };
 		D82C8CCB24DEF59B004E95D3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C8CCA24DEF59B004E95D3 /* NetworkError.swift */; };
+		D82C8CCD24DF3547004E95D3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C8CCC24DF3547004E95D3 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		D82C8CC524DEF20C004E95D3 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		D82C8CC824DEF348004E95D3 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D82C8CCA24DEF59B004E95D3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		D82C8CCC24DF3547004E95D3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				D82C8CBC24DEF0FE004E95D3 /* CollectionViewController.swift */,
+				D82C8CCC24DF3547004E95D3 /* DetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				D82C8CC924DEF348004E95D3 /* NetworkManager.swift in Sources */,
 				D82C8CAC24DEF05D004E95D3 /* ViewController.swift in Sources */,
 				D82C8CCB24DEF59B004E95D3 /* NetworkError.swift in Sources */,
+				D82C8CCD24DF3547004E95D3 /* DetailViewController.swift in Sources */,
 				D82C8CA824DEF05D004E95D3 /* AppDelegate.swift in Sources */,
 				D82C8CAA24DEF05D004E95D3 /* SceneDelegate.swift in Sources */,
 			);

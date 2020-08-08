@@ -8,6 +8,8 @@ class CollectionViewCell: UICollectionViewCell {
     var albumName: UILabel?
     var albumImage: UIImageView?
     
+    let emptyHeartURL = "https://www.iconsdb.com/icons/preview/gray/favorite-4-xxl.png"
+    let fullHeartURL = "https://icon-library.com/images/love-icon-png/love-icon-png-7.jpg"
     
     //Initialize
     override init(frame: CGRect) {
@@ -32,7 +34,7 @@ class CollectionViewCell: UICollectionViewCell {
         albumName.translatesAutoresizingMaskIntoConstraints = false
 //        artistName.heightAnchor.constraint(equalToConstant: 30).isActive = true
         albumName.textColor = UIColor(red: CGFloat(255.0/255.0), green: CGFloat(255.0/255.0), blue: CGFloat(100.0/255.0), alpha: 1.0)
-        albumName.adjustsFontSizeToFitWidth = true
+        //albumName.adjustsFontSizeToFitWidth = true
         albumName.font = UIFont(name: "AvenirNextCondensed-UltraLight", size: 18.0)
         
         let stackView = UIStackView(frame: .zero)
@@ -44,18 +46,45 @@ class CollectionViewCell: UICollectionViewCell {
 //        stackView.backgroundColor = UIColor(red: CGFloat(10.0/255.0), green: CGFloat(0.0/255.0), blue: CGFloat(40.0/255.0), alpha: 1.0)
 //        stackView.layer.borderColor = UIColor(red: CGFloat(150.0/255.0), green: CGFloat(100.0/255.0), blue: CGFloat(50.0/255.0), alpha: 1.0).cgColor
         
+        let bottomSV = UIStackView(frame: .zero)
+        bottomSV.translatesAutoresizingMaskIntoConstraints = false
+        bottomSV.axis = .horizontal
+        bottomSV.alignment = .fill
+        bottomSV.distribution = .fillProportionally
+        bottomSV.spacing = 2.0
+        
         let image = UIImageView(frame: .zero)
         image.translatesAutoresizingMaskIntoConstraints = false
         //image.scalesLargeContentImage = true
         image.widthAnchor.constraint(equalToConstant: 80).isActive = true
         image.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
+        let heartIcon = UIImageView(frame: .zero)
+        heartIcon.translatesAutoresizingMaskIntoConstraints = false
+        //image.scalesLargeContentImage = true
+        heartIcon.image = UIImage(named: "heart")
+        //heartIcon.centerXAnchor.constraint(equalTo: bottomSV.rightAnchor).isActive = true
+        
 //        self.contentView.addSubview(image)
         self.contentView.addSubview(stackView)
         stackView.addArrangedSubview(image)
         stackView.addArrangedSubview(artistName)
-        stackView.addArrangedSubview(albumName)
+        stackView.addArrangedSubview(bottomSV)
+        bottomSV.addArrangedSubview(albumName)
+        bottomSV.addArrangedSubview(heartIcon)
+        //stackView.addArrangedSubview(albumName)
         
+//        image.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true
+//        image.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 24).isActive = true
+//        image.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -24).isActive = true
+
+
+        heartIcon.widthAnchor.constraint(equalToConstant: 15).isActive = true
+        heartIcon.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        heartIcon.topAnchor.constraint(equalTo: bottomSV.topAnchor, constant: 4).isActive = true
+        heartIcon.bottomAnchor.constraint(equalTo: bottomSV.bottomAnchor, constant: 4).isActive = true
+
+
 //        image.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 0).isActive = true
 //        image.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 0).isActive = true
 //        image.trailingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 0).isActive = true
