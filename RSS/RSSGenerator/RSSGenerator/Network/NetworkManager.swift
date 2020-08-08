@@ -1,6 +1,7 @@
-import Foundation
+import UIKit
 
 typealias AlbumHandler = (Result<Feed, NetworkError>) -> ()
+typealias ImageHandler = (Result<UIImage?, NetworkError>) -> ()
 
 final class NetworkManager {
 
@@ -53,6 +54,35 @@ extension NetworkManager {
         
     }
     
+    func fetchAlbumImage(albumImgUrl: String, completion: @escaping ImageHandler) {
+        
+        guard let url = URL(string: albumImgUrl) else {
+            completion(.failure(.badURL))
+            return
+        }
+        
+        self.session.dataTask(with: url) { (data, response, error) in
+            
+            if let error = error {
+                print("first info eror")
+                completion(.failure(.serverError(error.localizedDescription)))
+                return
+            }
+            
+            guard let data = data else {
+                print("data info eror")
+                completion(.failure(.badData))
+                return
+            }
+            
+            let image = UIImage(data: data)
+            completion(.success(image))
+            
+        }.resume()
+        
+    }
+    
 }
+
 
 

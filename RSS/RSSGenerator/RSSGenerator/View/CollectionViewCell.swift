@@ -24,15 +24,15 @@ class CollectionViewCell: UICollectionViewCell {
         artistName.translatesAutoresizingMaskIntoConstraints = false
         artistName.heightAnchor.constraint(equalToConstant: 30).isActive = true
         artistName.font = UIFont(name: "AvenirNextCondensed-Medium", size: 24.0)
-        artistName.textColor = UIColor(red: CGFloat(60.0/255.0), green: CGFloat(0.0/255.0), blue: CGFloat(100.0/255.0), alpha: 1.0)
+        artistName.textColor = UIColor(red: CGFloat(255.0/255.0), green: CGFloat(0.0/255.0), blue: CGFloat(100.0/255.0), alpha: 1.0)
         artistName.adjustsFontSizeToFitWidth = true
         artistName.textAlignment = .center
         
         let albumName = UILabel(frame: .zero)
         albumName.translatesAutoresizingMaskIntoConstraints = false
-        artistName.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        albumName.textColor = UIColor(red: CGFloat(255.0/255.0), green: CGFloat(20.0/255.0), blue: CGFloat(200.0/255.0), alpha: 1.0)
-        //albumName.adjustsFontSizeToFitWidth = true
+//        artistName.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        albumName.textColor = UIColor(red: CGFloat(255.0/255.0), green: CGFloat(255.0/255.0), blue: CGFloat(100.0/255.0), alpha: 1.0)
+        albumName.adjustsFontSizeToFitWidth = true
         albumName.font = UIFont(name: "AvenirNextCondensed-UltraLight", size: 18.0)
         
         let stackView = UIStackView(frame: .zero)
@@ -41,7 +41,7 @@ class CollectionViewCell: UICollectionViewCell {
         stackView.alignment = .fill
         stackView.distribution = .fillProportionally
         stackView.spacing = 4.0
-        stackView.backgroundColor = UIColor(red: CGFloat(250.0/255.0), green: CGFloat(250.0/255.0), blue: CGFloat(250.0/255.0), alpha: 1.0)
+//        stackView.backgroundColor = UIColor(red: CGFloat(10.0/255.0), green: CGFloat(0.0/255.0), blue: CGFloat(40.0/255.0), alpha: 1.0)
 //        stackView.layer.borderColor = UIColor(red: CGFloat(150.0/255.0), green: CGFloat(100.0/255.0), blue: CGFloat(50.0/255.0), alpha: 1.0).cgColor
         
         let image = UIImageView(frame: .zero)

@@ -5,6 +5,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     var collectionView: UICollectionView?
     //var numbers: [NumberModel] = []
     //var albums: [Album] = []
+    var imagesDict: [String: UIImage] = [:]
     
     var albums: [Album] = [] {
         didSet {
@@ -15,6 +16,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     let firstUrl: String = "https://rss.itunes.apple.com/api/v1/gw/apple-music/coming-soon/all/100/explicit.json"
+    let defaultEighth = "https://cdn1.macworld.co.uk/cmsdata/features/3630990/sync_itunes_apple_music_thumb800.jpg"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +40,8 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.reuseId)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(red: CGFloat(10.0/255.0), green: CGFloat(0.0/255.0), blue: CGFloat(40.0/255.0), alpha: 1.0)
+        //collectionView.backgroundColor = .white
         
         self.view.addSubview(collectionView)
         
@@ -60,15 +63,44 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseId, for: indexPath) as? CollectionViewCell else {
             return UICollectionViewCell()
         }
+        let imageUrl = self.albums[indexPath.row].artworkUrl100
+        let albumId = self.albums[indexPath.row].id
+        //var albumImage: UIImage?
+        
+        if (imagesDict[albumId] != nil) {
+            //albumImage = imagesDict[albumId]
+            cell.albumImage?.image = imagesDict[albumId]
+            cell.artistName?.text = self.albums[indexPath.row].artistName
+            cell.albumName?.text = self.albums[indexPath.row].name
+            return cell
+        } else {
+            NetworkManager.shared.fetchAlbumImage(albumImgUrl: imageUrl ?? defaultEighth) { result in
+                switch result {
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        //albumImage = image
+                        self.imagesDict[albumId] = image
+                        cell.albumImage?.image = image
+                        cell.artistName?.text = self.albums[indexPath.row].artistName
+                        cell.albumName?.text = self.albums[indexPath.row].name
+                    }
+                case .failure(let error):
+                    print("error fetching album")
+                    print(error)
+                }
+            }
+        }
+        
+        return cell
         
 //        cell.widthAnchor.constraint(equalToConstant: 120).isActive = true
 //        cell.heightAnchor.constraint(equalToConstant: 120).isActive = true
         //cell.albumImage?.image = self.albums[indexPath.row].artworkUrl100
-        cell.albumImage?.image = UIImage(named: "itunes")
-        cell.artistName?.text = self.albums[indexPath.row].artistName
-        cell.albumName?.text = self.albums[indexPath.row].name
-        
-        return cell
+//        cell.albumImage?.image = albumImage ?? UIImage(named: "itunes")
+//        cell.artistName?.text = self.albums[indexPath.row].artistName
+//        cell.albumName?.text = self.albums[indexPath.row].name
+//
+//        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

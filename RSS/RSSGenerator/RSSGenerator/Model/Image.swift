@@ -22,7 +22,7 @@ struct Feed: Codable {
 struct Album: Codable {
     
     var artistName: String?
-    //var id: String
+    var id: String
     //var releaseDate: String
     var name: String?
 //    var kind: String
@@ -35,7 +35,7 @@ struct Album: Codable {
     
     enum CodingKeys: String, CodingKey {
         case artistName,
-//             id,
+             id,
 //             releaseDate,
              name,
 //             kind,
