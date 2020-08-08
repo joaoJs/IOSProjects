@@ -68,6 +68,7 @@ class DetailViewController: UIViewController {
         //        albumName.text = "test"
         albumName.font = UIFont(name: "AvenirNextCondensed-Regular", size: 24.0)
         albumName.textColor = UIColor(red: CGFloat(255.0/255.0), green: CGFloat(0.0/255.0), blue: CGFloat(100.0/255.0), alpha: 1.0)
+        albumName.adjustsFontSizeToFitWidth = true
         //        imageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         albumName.textAlignment = .center
         
