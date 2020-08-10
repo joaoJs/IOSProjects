@@ -71,13 +71,16 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         let imageUrl = self.albums[indexPath.row].artworkUrl100
         let albumId = self.albums[indexPath.row].id
-        //var albumImage: UIImage?
+        guard let albumName = self.albums[indexPath.row].name else {return UICollectionViewCell()}
         
         if (self.imagesDict[albumId] != nil) {
             //albumImage = imagesDict[albumId]
             cell.albumImage?.image = self.imagesDict[albumId]
             cell.artistName?.text = self.albums[indexPath.row].artistName
-            cell.albumName?.text = self.albums[indexPath.row].name
+            cell.albumName?.text = albumName
+            guard let isFavorite = FavoritesDict.shared.favoritesDict[albumName] else {return UICollectionViewCell()}
+            let icon = isFavorite ? "heartFull" : "heart"
+            cell.heartIcon?.image = UIImage(named: icon)
             return cell
         } else {
             NetworkManager.shared.fetchAlbumImage(albumImgUrl: imageUrl ?? defaultEighth) { result in
@@ -86,9 +89,15 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
                     DispatchQueue.main.async {
                         //albumImage = image
                         self.imagesDict[albumId] = image
+                        
+                        // saving favorite status
+                        guard let albumName = self.albums[indexPath.row].name else {return}
+                        FavoritesDict.shared.favoritesDict[albumName] = false
+                        
                         cell.albumImage?.image = image
                         cell.artistName?.text = self.albums[indexPath.row].artistName
-                        cell.albumName?.text = self.albums[indexPath.row].name
+                        cell.albumName?.text = albumName
+                        cell.heartIcon?.image = UIImage(named: "heart")
                     }
                 case .failure(let error):
                     print("error fetching album")
@@ -106,12 +115,14 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         
         DispatchQueue.main.async {
             let albumId = self.albums[indexPath.row].id
-            let albumName = self.albums[indexPath.row].name
+            guard let albumName = self.albums[indexPath.row].name else {return}
             let artistName = self.albums[indexPath.row].artistName
             let date = self.albums[indexPath.row].releaseDate
             let genres = self.albums[indexPath.row].genres
             let albumImage = self.imagesDict[albumId]
-            let heartImage = UIImage(named: "heart")
+            guard let isFavorite = FavoritesDict.shared.favoritesDict[albumName] else {return}
+            let icon = isFavorite ? "heartFull" : "heart"
+            let heartImage = UIImage(named: icon)
             
             let vc = DetailViewController(details: (imageView: albumImage , artistName: artistName, albumName: albumName, listOfGenres: genres, dateOfRelease: date, heartImg: heartImage))
             self.navigationController?.pushViewController(vc, animated: false)

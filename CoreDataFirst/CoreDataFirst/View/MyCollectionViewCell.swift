@@ -7,6 +7,7 @@ class MyCollectionViewCell: UICollectionViewCell {
     var artistName: UILabel?
     var albumName: UILabel?
     var albumImage: UIImageView?
+    var heartIcon: UIImageView?
     
     let emptyHeartURL = "https://www.iconsdb.com/icons/preview/gray/favorite-4-xxl.png"
     let fullHeartURL = "https://icon-library.com/images/love-icon-png/love-icon-png-7.jpg"
@@ -62,7 +63,7 @@ class MyCollectionViewCell: UICollectionViewCell {
         let heartIcon = UIImageView(frame: .zero)
         heartIcon.translatesAutoresizingMaskIntoConstraints = false
         //image.scalesLargeContentImage = true
-        heartIcon.image = UIImage(named: "heart")
+        //heartIcon.image = UIImage(named: "heart")
         //heartIcon.centerXAnchor.constraint(equalTo: bottomSV.rightAnchor).isActive = true
         
 //        self.contentView.addSubview(image)
@@ -110,5 +111,6 @@ class MyCollectionViewCell: UICollectionViewCell {
         self.albumImage = image
         self.artistName = artistName
         self.albumName = albumName
+        self.heartIcon = heartIcon
     }
 }

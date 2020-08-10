@@ -9,6 +9,12 @@ class DetailViewController: UIViewController {
     var heartImgView: UIImageView?
     
     @objc func imageViewTapped() {
+        guard let albumName = self.albumName?.text else {return}
+        guard let isFavorite = FavoritesDict.shared.favoritesDict[albumName] else {return}
+        let result = isFavorite ? false : true
+        FavoritesDict.shared.favoritesDict[albumName] = result
+        let icon = isFavorite ? "heart" : "heartFull"
+        self.heartImgView?.image = UIImage(named: icon)
         print("pressed button")
         // Image has been tapped
     }
