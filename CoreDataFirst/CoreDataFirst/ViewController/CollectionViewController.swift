@@ -108,10 +108,14 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         
         return cell
     }
+
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //collectionView.deselectRow(at: indexPath, animated: true)
-        collectionView.deselectItem(at: indexPath, animated: true)
+        //collectionView.deselectItem(at: indexPath, animated: true)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCollectionViewCell.reuseId, for: indexPath) as? MyCollectionViewCell else {
+            return
+        }
         
         DispatchQueue.main.async {
             let albumId = self.albums[indexPath.row].id
@@ -124,7 +128,16 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
             let icon = isFavorite ? "heartFull" : "heart"
             let heartImage = UIImage(named: icon)
             
+            
             let vc = DetailViewController(details: (imageView: albumImage , artistName: artistName, albumName: albumName, listOfGenres: genres, dateOfRelease: date, heartImg: heartImage))
+            
+            // Uses closure to pass data back to Main View Controller
+            vc.completionHandler = { text in
+                print("Inside Collection View Contoller: \(text)")
+                cell.heartIcon?.image = UIImage(named: text)
+                self.collectionView?.reloadData()
+            }
+            
             self.navigationController?.pushViewController(vc, animated: false)
         }
     }

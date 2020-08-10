@@ -8,6 +8,8 @@ class DetailViewController: UIViewController {
     var dateOfRelease: UILabel?
     var heartImgView: UIImageView?
     
+    var completionHandler:((String) -> Void)?
+    
     @objc func imageViewTapped() {
         guard let albumName = self.albumName?.text else {return}
         guard let isFavorite = FavoritesDict.shared.favoritesDict[albumName] else {return}
@@ -15,6 +17,9 @@ class DetailViewController: UIViewController {
         FavoritesDict.shared.favoritesDict[albumName] = result
         let icon = isFavorite ? "heart" : "heartFull"
         self.heartImgView?.image = UIImage(named: icon)
+        
+        completionHandler?(icon)
+
         print("pressed button")
         // Image has been tapped
     }
@@ -25,6 +30,7 @@ class DetailViewController: UIViewController {
         self.tuple = details
         super.init(nibName: nil, bundle: nil)
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
