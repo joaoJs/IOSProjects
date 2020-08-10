@@ -1,6 +1,6 @@
 import UIKit
 
-class CollectionViewCell: UICollectionViewCell {
+class MyCollectionViewCell: UICollectionViewCell {
     
     static let reuseId: String = "MyCell"
     
@@ -112,5 +112,3 @@ class CollectionViewCell: UICollectionViewCell {
         self.albumName = albumName
     }
 }
-
-

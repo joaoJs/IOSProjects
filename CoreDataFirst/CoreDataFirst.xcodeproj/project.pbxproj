@@ -14,8 +14,12 @@
 		D8A3564C24E124AE00042347 /* CoreDataFirst.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8A3564A24E124AE00042347 /* CoreDataFirst.xcdatamodeld */; };
 		D8A3564E24E124AF00042347 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8A3564D24E124AF00042347 /* Assets.xcassets */; };
 		D8A3565C24E1256A00042347 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3565B24E1256A00042347 /* CollectionViewController.swift */; };
-		D8A3565F24E125EA00042347 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3565E24E125EA00042347 /* Helpers.swift */; };
-		D8A3566124E1261900042347 /* NumberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3566024E1261900042347 /* NumberModel.swift */; };
+		D8A3566324E1272600042347 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3566224E1272600042347 /* DetailViewController.swift */; };
+		D8A3566824E127A400042347 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3566724E127A400042347 /* NetworkManager.swift */; };
+		D8A3566A24E127C000042347 /* NeworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3566924E127C000042347 /* NeworkManager.swift */; };
+		D8A3566C24E1285000042347 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3566B24E1285000042347 /* Album.swift */; };
+		D8A3566E24E128DB00042347 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3566D24E128DB00042347 /* MyCollectionViewCell.swift */; };
+		D8A3567024E129B500042347 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3566F24E129B500042347 /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,8 +32,12 @@
 		D8A3564D24E124AF00042347 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8A3565224E124AF00042347 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8A3565B24E1256A00042347 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
-		D8A3565E24E125EA00042347 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		D8A3566024E1261900042347 /* NumberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberModel.swift; sourceTree = "<group>"; };
+		D8A3566224E1272600042347 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D8A3566724E127A400042347 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D8A3566924E127C000042347 /* NeworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeworkManager.swift; sourceTree = "<group>"; };
+		D8A3566B24E1285000042347 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		D8A3566D24E128DB00042347 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
+		D8A3566F24E129B500042347 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,7 @@
 		D8A3564024E124AE00042347 /* CoreDataFirst */ = {
 			isa = PBXGroup;
 			children = (
+				D8A3566624E1279300042347 /* Network */,
 				D8A3565D24E125DB00042347 /* Utils */,
 				D8A3565A24E124E000042347 /* Model */,
 				D8A3565924E124DD00042347 /* View */,
@@ -81,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				D8A3565B24E1256A00042347 /* CollectionViewController.swift */,
+				D8A3566224E1272600042347 /* DetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -88,6 +98,7 @@
 		D8A3565924E124DD00042347 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D8A3566D24E128DB00042347 /* MyCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -95,7 +106,7 @@
 		D8A3565A24E124E000042347 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D8A3566024E1261900042347 /* NumberModel.swift */,
+				D8A3566B24E1285000042347 /* Album.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -103,9 +114,18 @@
 		D8A3565D24E125DB00042347 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				D8A3565E24E125EA00042347 /* Helpers.swift */,
+				D8A3566F24E129B500042347 /* UIView+Extension.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		D8A3566624E1279300042347 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D8A3566724E127A400042347 /* NetworkManager.swift */,
+				D8A3566924E127C000042347 /* NeworkManager.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,13 +198,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8A3566124E1261900042347 /* NumberModel.swift in Sources */,
+				D8A3566E24E128DB00042347 /* MyCollectionViewCell.swift in Sources */,
 				D8A3564624E124AE00042347 /* ViewController.swift in Sources */,
-				D8A3565F24E125EA00042347 /* Helpers.swift in Sources */,
+				D8A3566824E127A400042347 /* NetworkManager.swift in Sources */,
 				D8A3564C24E124AE00042347 /* CoreDataFirst.xcdatamodeld in Sources */,
 				D8A3564224E124AE00042347 /* AppDelegate.swift in Sources */,
+				D8A3567024E129B500042347 /* UIView+Extension.swift in Sources */,
 				D8A3564424E124AE00042347 /* SceneDelegate.swift in Sources */,
 				D8A3565C24E1256A00042347 /* CollectionViewController.swift in Sources */,
+				D8A3566C24E1285000042347 /* Album.swift in Sources */,
+				D8A3566A24E127C000042347 /* NeworkManager.swift in Sources */,
+				D8A3566324E1272600042347 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
