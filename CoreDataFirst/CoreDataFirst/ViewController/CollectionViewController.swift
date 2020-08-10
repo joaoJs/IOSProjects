@@ -1,4 +1,5 @@
 import UIKit
+import CoreData
 
 class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -15,6 +16,8 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
+    var albumsFromCD: [AlbumModel] = []
+    
     let firstUrl: String = "https://rss.itunes.apple.com/api/v1/gw/apple-music/coming-soon/all/100/explicit.json"
     let defaultEighth = "https://cdn1.macworld.co.uk/cmsdata/features/3630990/sync_itunes_apple_music_thumb800.jpg"
     
@@ -23,15 +26,67 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        NetworkManager.shared.fetchAlbums(firstUrl: firstUrl) { result in
-            switch result {
-            case .success(let albums):
-                self.albums = albums.results
-            case .failure(let error):
-                print("error fetching album")
-                print(error)
+        
+        do {
+            let list = try GlobalContext.shared.context.fetch(AlbumModel.fetchRequest())
+            list.forEach{ album in
+                guard let am = album as? AlbumModel else {return}
+                self.albumsFromCD.append(am)
+            }
+            print("albums from cd ...")
+            print(self.albumsFromCD)
+        } catch {
+            print("error")
+        }
+        
+        if (self.albumsFromCD.count == 0) {
+            NetworkManager.shared.fetchAlbums(firstUrl: firstUrl) { result in
+                switch result {
+                case .success(let albums):
+                    self.albums = albums.results
+                    let context = GlobalContext.shared.context
+                    albums.results.forEach{ album in
+                        
+                        //let albumModel = NSEntityDescription.insertNewObject(forEntityName: "AlbumModel", into: context)
+                        let albumModel = AlbumModel(context: context)
+                        
+                        albumModel.setValue(album.id, forKey: "id")
+                        albumModel.setValue(album.name, forKey: "name")
+                        albumModel.setValue(album.artistName, forKey: "artistName")
+                        albumModel.setValue(album.releaseDate, forKey: "releaseDate")
+                        albumModel.setValue(album.artworkUrl100, forKey: "artworkUrl100")
+                       
+                        
+                        //albumModel.setValue(album.genres, forKey: "city")
+                        album.genres.forEach{ genre in
+                            let genreM = GenreModel(context: context)
+                            genreM.name = genre.name
+                            albumModel.addToGenres(genreM)
+                        }
+                        
+                        
+                        do {
+                            try context.save()
+                            print("Success")
+                        } catch {
+                            print("Error saving: \(error)")
+                        }
+                    }
+                case .failure(let error):
+                    print("error fetching album")
+                    print(error)
+                }
             }
         }
+        //        NetworkManager.shared.fetchAlbums(firstUrl: firstUrl) { result in
+        //            switch result {
+        //            case .success(let albums):
+        //                self.albums = albums.results
+        //            case .failure(let error):
+        //                print("error fetching album")
+        //                print(error)
+        //            }
+        //        }
         self.setUp()
     }
     
@@ -108,7 +163,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         
         return cell
     }
-
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //collectionView.deselectRow(at: indexPath, animated: true)

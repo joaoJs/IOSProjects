@@ -21,6 +21,7 @@
 		D8A3566E24E128DB00042347 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3566D24E128DB00042347 /* MyCollectionViewCell.swift */; };
 		D8A3567024E129B500042347 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3566F24E129B500042347 /* UIView+Extension.swift */; };
 		D8A3567224E1306700042347 /* FavotritesDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3567124E1306700042347 /* FavotritesDict.swift */; };
+		D8A3567424E161BA00042347 /* GlobalContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3567324E161BA00042347 /* GlobalContext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		D8A3566D24E128DB00042347 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		D8A3566F24E129B500042347 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		D8A3567124E1306700042347 /* FavotritesDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavotritesDict.swift; sourceTree = "<group>"; };
+		D8A3567324E161BA00042347 /* GlobalContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalContext.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			children = (
 				D8A3566F24E129B500042347 /* UIView+Extension.swift */,
 				D8A3567124E1306700042347 /* FavotritesDict.swift */,
+				D8A3567324E161BA00042347 /* GlobalContext.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				D8A3566C24E1285000042347 /* Album.swift in Sources */,
 				D8A3566A24E127C000042347 /* NeworkManager.swift in Sources */,
 				D8A3566324E1272600042347 /* DetailViewController.swift in Sources */,
+				D8A3567424E161BA00042347 /* GlobalContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
