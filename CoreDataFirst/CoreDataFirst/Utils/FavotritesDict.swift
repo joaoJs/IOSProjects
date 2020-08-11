@@ -12,10 +12,3 @@ final class FavoritesDict {
     
 }
 
-
-//extension FavoritesDict {
-//
-//   func get
-//
-//}
-

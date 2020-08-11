@@ -24,6 +24,7 @@
 		D8A3567424E161BA00042347 /* GlobalContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3567324E161BA00042347 /* GlobalContext.swift */; };
 		D8EB37FD24E30A540034F6DC /* AlbumsFromCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EB37FC24E30A540034F6DC /* AlbumsFromCoreData.swift */; };
 		D8EB37FF24E30FD40034F6DC /* GenresList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EB37FE24E30FD40034F6DC /* GenresList.swift */; };
+		D8EB380124E31E210034F6DC /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EB380024E31E210034F6DC /* CoreData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		D8A3567324E161BA00042347 /* GlobalContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalContext.swift; sourceTree = "<group>"; };
 		D8EB37FC24E30A540034F6DC /* AlbumsFromCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsFromCoreData.swift; sourceTree = "<group>"; };
 		D8EB37FE24E30FD40034F6DC /* GenresList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresList.swift; sourceTree = "<group>"; };
+		D8EB380024E31E210034F6DC /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				D8A3567324E161BA00042347 /* GlobalContext.swift */,
 				D8EB37FC24E30A540034F6DC /* AlbumsFromCoreData.swift */,
 				D8EB37FE24E30FD40034F6DC /* GenresList.swift */,
+				D8EB380024E31E210034F6DC /* CoreData.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				D8EB37FD24E30A540034F6DC /* AlbumsFromCoreData.swift in Sources */,
 				D8A3565C24E1256A00042347 /* CollectionViewController.swift in Sources */,
 				D8A3566C24E1285000042347 /* Album.swift in Sources */,
+				D8EB380124E31E210034F6DC /* CoreData.swift in Sources */,
 				D8A3566A24E127C000042347 /* NeworkManager.swift in Sources */,
 				D8A3566324E1272600042347 /* DetailViewController.swift in Sources */,
 				D8A3567424E161BA00042347 /* GlobalContext.swift in Sources */,

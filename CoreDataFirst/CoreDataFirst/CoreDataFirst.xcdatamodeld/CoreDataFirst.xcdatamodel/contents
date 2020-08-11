@@ -4,6 +4,7 @@
         <attribute name="artistName" optional="YES" attributeType="String"/>
         <attribute name="artworkUrl100" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="releaseDate" optional="YES" attributeType="String"/>
         <relationship name="genres" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GenreModel" inverseName="album" inverseEntity="GenreModel"/>
@@ -13,7 +14,7 @@
         <relationship name="album" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AlbumModel" inverseName="genres" inverseEntity="AlbumModel"/>
     </entity>
     <elements>
-        <element name="AlbumModel" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="AlbumModel" positionX="-63" positionY="-18" width="128" height="148"/>
         <element name="GenreModel" positionX="-54" positionY="36" width="128" height="73"/>
     </elements>
 </model>
