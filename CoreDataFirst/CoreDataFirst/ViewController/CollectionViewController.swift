@@ -31,7 +31,8 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
             let list = try GlobalContext.shared.context.fetch(AlbumModel.fetchRequest())
             list.forEach{ album in
                 guard let am = album as? AlbumModel else {return}
-                self.albumsFromCD.append(am)
+                AlbumsFromCoreData.shared.albums.append(am)
+                //self.albumsFromCD.append(am)
             }
             print("albums from cd ...")
             print(self.albumsFromCD)
@@ -39,7 +40,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
             print("error")
         }
         
-        if (self.albumsFromCD.count == 0) {
+       // if (AlbumsFromCoreData.shared.albums.count == 0) {
             NetworkManager.shared.fetchAlbums(firstUrl: firstUrl) { result in
                 switch result {
                 case .success(let albums):
@@ -77,16 +78,8 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
                     print(error)
                 }
             }
-        }
-        //        NetworkManager.shared.fetchAlbums(firstUrl: firstUrl) { result in
-        //            switch result {
-        //            case .success(let albums):
-        //                self.albums = albums.results
-        //            case .failure(let error):
-        //                print("error fetching album")
-        //                print(error)
-        //            }
-        //        }
+       // }
+        
         self.setUp()
     }
     
@@ -124,14 +117,21 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCollectionViewCell.reuseId, for: indexPath) as? MyCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let imageUrl = self.albums[indexPath.row].artworkUrl100
-        let albumId = self.albums[indexPath.row].id
-        guard let albumName = self.albums[indexPath.row].name else {return UICollectionViewCell()}
+//        let imageUrl = self.albums[indexPath.row].artworkUrl100
+//        let albumId = self.albums[indexPath.row].id
+//        guard let albumName = self.albums[indexPath.row].name else {return UICollectionViewCell()}
+        let imageUrl = AlbumsFromCoreData.shared.albums[indexPath.row].artworkUrl100
+        guard let albumId = AlbumsFromCoreData.shared.albums[indexPath.row].id else {return UICollectionViewCell()}
+        guard let albumName = AlbumsFromCoreData.shared.albums[indexPath.row].name else {return UICollectionViewCell()}
         
         if (self.imagesDict[albumId] != nil) {
             //albumImage = imagesDict[albumId]
+//            cell.albumImage?.image = self.imagesDict[albumId]
+//            cell.artistName?.text = self.albums[indexPath.row].artistName
+//            cell.albumName?.text = albumName
+            
             cell.albumImage?.image = self.imagesDict[albumId]
-            cell.artistName?.text = self.albums[indexPath.row].artistName
+            cell.artistName?.text = AlbumsFromCoreData.shared.albums[indexPath.row].artistName
             cell.albumName?.text = albumName
             guard let isFavorite = FavoritesDict.shared.favoritesDict[albumName] else {return UICollectionViewCell()}
             let icon = isFavorite ? "heartFull" : "heart"
@@ -146,11 +146,11 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
                         self.imagesDict[albumId] = image
                         
                         // saving favorite status
-                        guard let albumName = self.albums[indexPath.row].name else {return}
+                        guard let albumName = AlbumsFromCoreData.shared.albums[indexPath.row].name else {return}
                         FavoritesDict.shared.favoritesDict[albumName] = false
                         
                         cell.albumImage?.image = image
-                        cell.artistName?.text = self.albums[indexPath.row].artistName
+                        cell.artistName?.text = AlbumsFromCoreData.shared.albums[indexPath.row].artistName
                         cell.albumName?.text = albumName
                         cell.heartIcon?.image = UIImage(named: "heart")
                     }
@@ -173,11 +173,20 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         
         DispatchQueue.main.async {
-            let albumId = self.albums[indexPath.row].id
-            guard let albumName = self.albums[indexPath.row].name else {return}
-            let artistName = self.albums[indexPath.row].artistName
-            let date = self.albums[indexPath.row].releaseDate
-            let genres = self.albums[indexPath.row].genres
+            guard let albumId = AlbumsFromCoreData.shared.albums[indexPath.row].id else {return}
+            guard let albumName = AlbumsFromCoreData.shared.albums[indexPath.row].name else {return}
+            let artistName = AlbumsFromCoreData.shared.albums[indexPath.row].artistName
+            let date = AlbumsFromCoreData.shared.albums[indexPath.row].releaseDate
+            guard let genresNSSet = AlbumsFromCoreData.shared.albums[indexPath.row].genres else {return}
+            
+            // didn't find a better way to manibulate the genres NSSet
+            var genres: [Genre] = []
+            for (_, value) in genresNSSet.enumerated() {
+                let curr: GenreModel = value as! GenreModel
+                let gen = Genre.init(name: curr.name ?? "default genre")
+                genres.append(gen)
+            }
+            
             let albumImage = self.imagesDict[albumId]
             guard let isFavorite = FavoritesDict.shared.favoritesDict[albumName] else {return}
             let icon = isFavorite ? "heartFull" : "heart"

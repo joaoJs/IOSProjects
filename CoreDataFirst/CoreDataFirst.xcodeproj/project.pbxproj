@@ -22,6 +22,8 @@
 		D8A3567024E129B500042347 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3566F24E129B500042347 /* UIView+Extension.swift */; };
 		D8A3567224E1306700042347 /* FavotritesDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3567124E1306700042347 /* FavotritesDict.swift */; };
 		D8A3567424E161BA00042347 /* GlobalContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A3567324E161BA00042347 /* GlobalContext.swift */; };
+		D8EB37FD24E30A540034F6DC /* AlbumsFromCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EB37FC24E30A540034F6DC /* AlbumsFromCoreData.swift */; };
+		D8EB37FF24E30FD40034F6DC /* GenresList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EB37FE24E30FD40034F6DC /* GenresList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		D8A3566F24E129B500042347 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		D8A3567124E1306700042347 /* FavotritesDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavotritesDict.swift; sourceTree = "<group>"; };
 		D8A3567324E161BA00042347 /* GlobalContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalContext.swift; sourceTree = "<group>"; };
+		D8EB37FC24E30A540034F6DC /* AlbumsFromCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsFromCoreData.swift; sourceTree = "<group>"; };
+		D8EB37FE24E30FD40034F6DC /* GenresList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,8 @@
 				D8A3566F24E129B500042347 /* UIView+Extension.swift */,
 				D8A3567124E1306700042347 /* FavotritesDict.swift */,
 				D8A3567324E161BA00042347 /* GlobalContext.swift */,
+				D8EB37FC24E30A540034F6DC /* AlbumsFromCoreData.swift */,
+				D8EB37FE24E30FD40034F6DC /* GenresList.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -207,11 +213,13 @@
 				D8A3566E24E128DB00042347 /* MyCollectionViewCell.swift in Sources */,
 				D8A3564624E124AE00042347 /* ViewController.swift in Sources */,
 				D8A3567224E1306700042347 /* FavotritesDict.swift in Sources */,
+				D8EB37FF24E30FD40034F6DC /* GenresList.swift in Sources */,
 				D8A3566824E127A400042347 /* NetworkManager.swift in Sources */,
 				D8A3564C24E124AE00042347 /* CoreDataFirst.xcdatamodeld in Sources */,
 				D8A3564224E124AE00042347 /* AppDelegate.swift in Sources */,
 				D8A3567024E129B500042347 /* UIView+Extension.swift in Sources */,
 				D8A3564424E124AE00042347 /* SceneDelegate.swift in Sources */,
+				D8EB37FD24E30A540034F6DC /* AlbumsFromCoreData.swift in Sources */,
 				D8A3565C24E1256A00042347 /* CollectionViewController.swift in Sources */,
 				D8A3566C24E1285000042347 /* Album.swift in Sources */,
 				D8A3566A24E127C000042347 /* NeworkManager.swift in Sources */,
