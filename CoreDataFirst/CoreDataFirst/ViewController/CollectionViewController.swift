@@ -4,8 +4,7 @@ import CoreData
 class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var collectionView: UICollectionView?
-    //var numbers: [NumberModel] = []
-    //var albums: [Album] = []
+    
     var imagesDict: [String: UIImage] = [:]
     
     var albums: [Album] = [] {
@@ -42,43 +41,40 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         
         // if AlbumsFromCoreData.shared.albums.count == 0 that means we have not data in core data, therefore, call network
         // right now I have many albums saved in core data, I need to make a delete function to empty core data
-       if (AlbumsFromCoreData.shared.albums.count == 0) {
-            NetworkManager.shared.fetchAlbums(firstUrl: firstUrl) { result in
-                switch result {
-                case .success(let albums):
-                    self.albums = albums.results
-                    let context = GlobalContext.shared.context
-                    albums.results.forEach{ album in
-                        
-                        let albumModel = AlbumModel(context: context)
-                        
-                        albumModel.setValue(album.id, forKey: "id")
-                        albumModel.setValue(album.name, forKey: "name")
-                        albumModel.setValue(album.artistName, forKey: "artistName")
-                        albumModel.setValue(album.releaseDate, forKey: "releaseDate")
-                        albumModel.setValue(album.artworkUrl100, forKey: "artworkUrl100")
-                        albumModel.setValue(false, forKey: "isFavorite")
-                       
-                        album.genres.forEach{ genre in
-                            let genreM = GenreModel(context: context)
-                            genreM.name = genre.name
-                            albumModel.addToGenres(genreM)
-                        }
-                        
-                        
-                        do {
-                            try context.save()
-                            print("Success")
-                        } catch {
-                            print("Error saving: \(error)")
-                        }
+        if (AlbumsFromCoreData.shared.albums.count == 0) {
+            
+            NetworkGeneric().fetch(urlString: firstUrl, type: Feed.self) { (feeds) in
+                guard let results = feeds?.results else {return}
+                self.albums = results
+                let context = GlobalContext.shared.context
+                
+                results.forEach{ album in
+                    
+                    let albumModel = AlbumModel(context: context)
+                    
+                    albumModel.setValue(album.id, forKey: "id")
+                    albumModel.setValue(album.name, forKey: "name")
+                    albumModel.setValue(album.artistName, forKey: "artistName")
+                    albumModel.setValue(album.releaseDate, forKey: "releaseDate")
+                    albumModel.setValue(album.artworkUrl100, forKey: "artworkUrl100")
+                    albumModel.setValue(false, forKey: "isFavorite")
+                    
+                    album.genres.forEach{ genre in
+                        let genreM = GenreModel(context: context)
+                        genreM.name = genre.name
+                        albumModel.addToGenres(genreM)
                     }
-                case .failure(let error):
-                    print("error fetching album")
-                    print(error)
+                    
+                    
+                    do {
+                        try context.save()
+                        print("Success")
+                    } catch {
+                        print("Error saving: \(error)")
+                    }
                 }
             }
-       }
+        }
         
         self.setUp()
     }
@@ -120,7 +116,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         
         // fix bug with is favorite when cells are being 'lazyloaded'
         
-        let imageUrl = AlbumsFromCoreData.shared.albums[indexPath.row].artworkUrl100
+        guard let imageUrl = AlbumsFromCoreData.shared.albums[indexPath.row].artworkUrl100 else {return UICollectionViewCell()}
         guard let albumId = AlbumsFromCoreData.shared.albums[indexPath.row].id else {return UICollectionViewCell()}
         guard let albumName = AlbumsFromCoreData.shared.albums[indexPath.row].name else {return UICollectionViewCell()}
         
@@ -135,7 +131,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
             return cell
         } else {
             // I will always make this network call at least once because I am not saving the images in core data yet
-            NetworkManager.shared.fetchAlbumImage(albumImgUrl: imageUrl ?? defaultEighth) { result in
+            NetworkManager.shared.fetchAlbumImage(albumImgUrl: imageUrl ) { result in
                 switch result {
                 case .success(let image):
                     DispatchQueue.main.async {
@@ -191,7 +187,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
             
             let vc = DetailViewController(details: (imageView: albumImage , artistName: artistName, albumName: albumName, listOfGenres: genres, dateOfRelease: date, heartImg: heartImage))
             
-            // Uses closure to pass data back to Main View Controller
+            // Uses closure to pass data back to Main View Controller ***
             vc.completionHandler = { text in
                 print("Inside Collection View Contoller: \(text)")
                 cell.heartIcon?.image = UIImage(named: text)
