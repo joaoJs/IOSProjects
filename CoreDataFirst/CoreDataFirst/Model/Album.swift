@@ -56,6 +56,14 @@ struct Genre: Codable {
     }
 }
 
+struct Image: Codable {
+    var img: Data
+    
+    enum CodingKeys: String, CodingKey {
+        case img
+    }
+}
+
 //{
 //"artistName": "Navy Kenzo",
 //"id": "1523625704",

@@ -1,19 +1,15 @@
 import UIKit
+import CoreData
 
 class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var collectionView: UICollectionView?
-    //var numbers: [NumberModel] = []
-    //var albums: [Album] = []
-    var imagesDict: [String: UIImage] = [:]
     
-    var albums: [Album] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.collectionView?.reloadData()
-            }
-        }
-    }
+    var viewModel: AlbumViewModel = {
+        return AlbumViewModel()
+    }()
+    
+    var albumsFromCD: [AlbumModel] = []
     
     let firstUrl: String = "https://rss.itunes.apple.com/api/v1/gw/apple-music/coming-soon/all/100/explicit.json"
     let defaultEighth = "https://cdn1.macworld.co.uk/cmsdata/features/3630990/sync_itunes_apple_music_thumb800.jpg"
@@ -23,16 +19,34 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        NetworkManager.shared.fetchAlbums(firstUrl: firstUrl) { result in
-            switch result {
-            case .success(let albums):
-                self.albums = albums.results
-            case .failure(let error):
-                print("error fetching album")
-                print(error)
+        
+        do {
+            let list = try GlobalContext.shared.context.fetch(AlbumModel.fetchRequest())
+            list.forEach{ album in
+                guard let am = album as? AlbumModel else {return}
+                AlbumsFromCoreData.shared.albums.append(am)
             }
+            print("albums from core data ...")
+            print(self.albumsFromCD)
+        } catch {
+            print("error")
         }
+        
         self.setUp()
+        // if AlbumsFromCoreData.shared.albums.count == 0 that means we have not data in core data, therefore, call network
+        // right now I have many albums saved in core data, I need to make a delete function to empty core data
+        if (AlbumsFromCoreData.shared.albums.count == 0) {
+            
+            self.viewModel.bind(updateHandler: {
+                DispatchQueue.main.async {
+                    self.collectionView?.reloadData()
+                }
+            }) { (error) in
+                print("error")
+            }
+            self.viewModel.fetchMovies()
+            
+        }
     }
     
     private func setUp() {
@@ -62,76 +76,81 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return albums.count
+        return AlbumsFromCoreData.shared.albums.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCollectionViewCell.reuseId, for: indexPath) as? MyCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let imageUrl = self.albums[indexPath.row].artworkUrl100
-        let albumId = self.albums[indexPath.row].id
-        guard let albumName = self.albums[indexPath.row].name else {return UICollectionViewCell()}
         
-        if (self.imagesDict[albumId] != nil) {
-            //albumImage = imagesDict[albumId]
-            cell.albumImage?.image = self.imagesDict[albumId]
-            cell.artistName?.text = self.albums[indexPath.row].artistName
+        // fix bug with is favorite when cells are being 'lazyloaded'
+        
+        guard let imageUrl = AlbumsFromCoreData.shared.albums[indexPath.row].artworkUrl100 else {return UICollectionViewCell()}
+        guard let albumId = AlbumsFromCoreData.shared.albums[indexPath.row].id else {return UICollectionViewCell()}
+        guard let albumName = AlbumsFromCoreData.shared.albums[indexPath.row].name else {return UICollectionViewCell()}
+        
+        // I am still saving images in an images dictionary
+        if (ImagesDict.shared.imagesDict[albumId] != nil) {
+            
+            cell.albumImage?.image = ImagesDict.shared.imagesDict[albumId]
+            cell.artistName?.text = AlbumsFromCoreData.shared.albums[indexPath.row].artistName
             cell.albumName?.text = albumName
-            guard let isFavorite = FavoritesDict.shared.favoritesDict[albumName] else {return UICollectionViewCell()}
-            let icon = isFavorite ? "heartFull" : "heart"
-            cell.heartIcon?.image = UIImage(named: icon)
+            let hIcon = AlbumsFromCoreData.shared.albums[indexPath.row].isFavorite ? "heartFull" : "heart"
+            cell.heartIcon?.image = UIImage(named: hIcon)
             return cell
         } else {
-            NetworkManager.shared.fetchAlbumImage(albumImgUrl: imageUrl ?? defaultEighth) { result in
-                switch result {
-                case .success(let image):
-                    DispatchQueue.main.async {
-                        //albumImage = image
-                        self.imagesDict[albumId] = image
-                        
-                        // saving favorite status
-                        guard let albumName = self.albums[indexPath.row].name else {return}
-                        FavoritesDict.shared.favoritesDict[albumName] = false
-                        
-                        cell.albumImage?.image = image
-                        cell.artistName?.text = self.albums[indexPath.row].artistName
-                        cell.albumName?.text = albumName
-                        cell.heartIcon?.image = UIImage(named: "heart")
+            // I will always make this network call at least once because I am not saving the images in core data yet
+            self.viewModel.fetchAlbumImage(albumId: albumId, albumImgUrl: imageUrl, index: indexPath.row){imageBack in
+                DispatchQueue.main.async {
+                    cell.albumImage?.image = imageBack
+                    if (ImagesDict.shared.imagesDict[albumId] == nil) {
+                        ImagesDict.shared.imagesDict[albumId] = imageBack
                     }
-                case .failure(let error):
-                    print("error fetching album")
-                    print(error)
+                    
+                    FavoritesDict.shared.favoritesDict[albumName] = AlbumsFromCoreData.shared.albums[indexPath.row].isFavorite
+                    cell.artistName?.text = AlbumsFromCoreData.shared.albums[indexPath.row].artistName
+                    cell.albumName?.text = albumName
+                    let hIcon = AlbumsFromCoreData.shared.albums[indexPath.row].isFavorite ? "heartFull" : "heart"
+                    cell.heartIcon?.image = UIImage(named: hIcon)
                 }
             }
+        
         }
         
         return cell
     }
-
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //collectionView.deselectRow(at: indexPath, animated: true)
-        //collectionView.deselectItem(at: indexPath, animated: true)
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCollectionViewCell.reuseId, for: indexPath) as? MyCollectionViewCell else {
             return
         }
         
         DispatchQueue.main.async {
-            let albumId = self.albums[indexPath.row].id
-            guard let albumName = self.albums[indexPath.row].name else {return}
-            let artistName = self.albums[indexPath.row].artistName
-            let date = self.albums[indexPath.row].releaseDate
-            let genres = self.albums[indexPath.row].genres
-            let albumImage = self.imagesDict[albumId]
-            guard let isFavorite = FavoritesDict.shared.favoritesDict[albumName] else {return}
-            let icon = isFavorite ? "heartFull" : "heart"
-            let heartImage = UIImage(named: icon)
+            guard let albumId = AlbumsFromCoreData.shared.albums[indexPath.row].id else {return}
+            guard let albumName = AlbumsFromCoreData.shared.albums[indexPath.row].name else {return}
+            let artistName = AlbumsFromCoreData.shared.albums[indexPath.row].artistName
+            let date = AlbumsFromCoreData.shared.albums[indexPath.row].releaseDate
+            guard let genresNSSet = AlbumsFromCoreData.shared.albums[indexPath.row].genres else {return}
+            
+            // didn't find a better way to manibulate the genres NSSet
+            var genres: [Genre] = []
+            for (_, value) in genresNSSet.enumerated() {
+                let curr: GenreModel = value as! GenreModel
+                let gen = Genre.init(name: curr.name ?? "default genre")
+                genres.append(gen)
+            }
+            
+            let albumImage = ImagesDict.shared.imagesDict[albumId]
+            let hIcon = AlbumsFromCoreData.shared.albums[indexPath.row].isFavorite ? "heartFull" : "heart"
+            let heartImage = UIImage(named: hIcon)
             
             
             let vc = DetailViewController(details: (imageView: albumImage , artistName: artistName, albumName: albumName, listOfGenres: genres, dateOfRelease: date, heartImg: heartImage))
             
-            // Uses closure to pass data back to Main View Controller
+            // Uses closure to pass data back to Main View Controller ***
             vc.completionHandler = { text in
                 print("Inside Collection View Contoller: \(text)")
                 cell.heartIcon?.image = UIImage(named: text)

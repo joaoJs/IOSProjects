@@ -1,4 +1,5 @@
 import UIKit
+import CoreData
 
 class DetailViewController: UIViewController {
     
@@ -10,6 +11,29 @@ class DetailViewController: UIViewController {
     
     var completionHandler:((String) -> Void)?
     
+    // update album when favorite status changes
+    // would be nice to find a way to do this using a predicate
+    func updateAlbum(isFav: Bool) {
+        do {
+            let list = try GlobalContext.shared.context.fetch(AlbumModel.fetchRequest())
+            list.forEach{ album in
+                guard let am = album as? AlbumModel else {return}
+                if (am.name == self.albumName?.text) {
+                    am.setValue(isFav, forKey: "isFavorite")
+                }
+            }
+        } catch {
+            print("error")
+        }
+        
+        do {
+           try GlobalContext.shared.context.save()
+           print("Success")
+       } catch {
+           print("Error saving: \(error)")
+       }
+    }
+    
     @objc func imageViewTapped() {
         guard let albumName = self.albumName?.text else {return}
         guard let isFavorite = FavoritesDict.shared.favoritesDict[albumName] else {return}
@@ -17,6 +41,10 @@ class DetailViewController: UIViewController {
         FavoritesDict.shared.favoritesDict[albumName] = result
         let icon = isFavorite ? "heart" : "heartFull"
         self.heartImgView?.image = UIImage(named: icon)
+        
+        self.updateAlbum(isFav: result)
+        // save change to core data
+        // for that will have to fetch one album and update isfavorite of that album 
         
         completionHandler?(icon)
 
@@ -114,10 +142,8 @@ class DetailViewController: UIViewController {
         heartIcon.addGestureRecognizer(gestureRecognizer)
         heartIcon.isUserInteractionEnabled = true
         
-        //self.view.addSubview(imageView)
-        //self.view.addSubview(scrollView)
+        
         self.view.addSubview(imageView)
-//        stackView.addArrangedSubview(imageView)
         self.view.addSubview(midSV)
         self.view.addSubview(midBottomSV)
         midSV.addArrangedSubview(heartIcon)
@@ -125,7 +151,6 @@ class DetailViewController: UIViewController {
         midBottomSV.addArrangedSubview(artistName)
         midBottomSV.addArrangedSubview(date)
         
-        //self.view.addSubview(heartIcon)
         self.view.addSubview(bottomSV)
        
         
@@ -136,15 +161,13 @@ class DetailViewController: UIViewController {
             currGenre.textColor = UIColor(red: CGFloat(255.0/255.0), green: CGFloat(0.0/255.0), blue: CGFloat(100.0/255.0), alpha: 1.0)
             currGenre.textAlignment = .center
             currGenre.font = UIFont(name: "AvenirNextCondensed-Regular", size: 20.0)
-            //stackView.addArrangedSubview(currGenre)
             bottomSV.addArrangedSubview(currGenre)
 
         }
         
        
         imageView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
-        //imageView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
-        //imageView.bottomAnchor.constraint(equalTo: midSV.topAnchor, constant: -32).isActive = true
+        
         imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
@@ -155,9 +178,7 @@ class DetailViewController: UIViewController {
         midSV.bottomAnchor.constraint(equalTo: midBottomSV.topAnchor, constant: -40).isActive = true
         
         midBottomSV.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
-        //midSV.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 32).isActive = true
         midBottomSV.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
-        //midBottomSV.bottomAnchor.constraint(equalTo: bottomSV.topAnchor, constant: -32).isActive = true
         
         
         bottomSV.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
