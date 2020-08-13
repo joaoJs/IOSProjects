@@ -5,15 +5,9 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var collectionView: UICollectionView?
     
-    var imagesDict: [String: UIImage] = [:]
-    
-    var albums: [Album] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.collectionView?.reloadData()
-            }
-        }
-    }
+    var viewModel: AlbumViewModel = {
+        return AlbumViewModel()
+    }()
     
     var albumsFromCD: [AlbumModel] = []
     
@@ -38,45 +32,21 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
             print("error")
         }
         
-        
+        self.setUp()
         // if AlbumsFromCoreData.shared.albums.count == 0 that means we have not data in core data, therefore, call network
         // right now I have many albums saved in core data, I need to make a delete function to empty core data
         if (AlbumsFromCoreData.shared.albums.count == 0) {
             
-            NetworkGeneric().fetch(urlString: firstUrl, type: Feed.self) { (feeds) in
-                guard let results = feeds?.results else {return}
-                self.albums = results
-                let context = GlobalContext.shared.context
-                
-                results.forEach{ album in
-                    
-                    let albumModel = AlbumModel(context: context)
-                    
-                    albumModel.setValue(album.id, forKey: "id")
-                    albumModel.setValue(album.name, forKey: "name")
-                    albumModel.setValue(album.artistName, forKey: "artistName")
-                    albumModel.setValue(album.releaseDate, forKey: "releaseDate")
-                    albumModel.setValue(album.artworkUrl100, forKey: "artworkUrl100")
-                    albumModel.setValue(false, forKey: "isFavorite")
-                    
-                    album.genres.forEach{ genre in
-                        let genreM = GenreModel(context: context)
-                        genreM.name = genre.name
-                        albumModel.addToGenres(genreM)
-                    }
-                    
-                    
-                    do {
-                        try context.save()
-                        print("Success")
-                    } catch {
-                        print("Error saving: \(error)")
-                    }
+            self.viewModel.bind(updateHandler: {
+                DispatchQueue.main.async {
+                    self.collectionView?.reloadData()
                 }
+            }) { (error) in
+                print("error")
             }
+            self.viewModel.fetchMovies()
+            
         }
-        
-        self.setUp()
     }
     
     private func setUp() {
@@ -121,9 +91,9 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         guard let albumName = AlbumsFromCoreData.shared.albums[indexPath.row].name else {return UICollectionViewCell()}
         
         // I am still saving images in an images dictionary
-        if (self.imagesDict[albumId] != nil) {
+        if (ImagesDict.shared.imagesDict[albumId] != nil) {
             
-            cell.albumImage?.image = self.imagesDict[albumId]
+            cell.albumImage?.image = ImagesDict.shared.imagesDict[albumId]
             cell.artistName?.text = AlbumsFromCoreData.shared.albums[indexPath.row].artistName
             cell.albumName?.text = albumName
             let hIcon = AlbumsFromCoreData.shared.albums[indexPath.row].isFavorite ? "heartFull" : "heart"
@@ -131,28 +101,21 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
             return cell
         } else {
             // I will always make this network call at least once because I am not saving the images in core data yet
-            NetworkManager.shared.fetchAlbumImage(albumImgUrl: imageUrl ) { result in
-                switch result {
-                case .success(let image):
-                    DispatchQueue.main.async {
-                        //albumImage = image
-                        self.imagesDict[albumId] = image
-                        
-                        // saving favorite status
-                        guard let albumName = AlbumsFromCoreData.shared.albums[indexPath.row].name else {return}
-                        FavoritesDict.shared.favoritesDict[albumName] = false
-                        
-                        cell.albumImage?.image = image
-                        cell.artistName?.text = AlbumsFromCoreData.shared.albums[indexPath.row].artistName
-                        cell.albumName?.text = albumName
-                        let hIcon = AlbumsFromCoreData.shared.albums[indexPath.row].isFavorite ? "heartFull" : "heart"
-                        cell.heartIcon?.image = UIImage(named: hIcon)
+            self.viewModel.fetchAlbumImage(albumId: albumId, albumImgUrl: imageUrl, index: indexPath.row){imageBack in
+                DispatchQueue.main.async {
+                    cell.albumImage?.image = imageBack
+                    if (ImagesDict.shared.imagesDict[albumId] == nil) {
+                        ImagesDict.shared.imagesDict[albumId] = imageBack
                     }
-                case .failure(let error):
-                    print("error fetching album")
-                    print(error)
+                    
+                    FavoritesDict.shared.favoritesDict[albumName] = AlbumsFromCoreData.shared.albums[indexPath.row].isFavorite
+                    cell.artistName?.text = AlbumsFromCoreData.shared.albums[indexPath.row].artistName
+                    cell.albumName?.text = albumName
+                    let hIcon = AlbumsFromCoreData.shared.albums[indexPath.row].isFavorite ? "heartFull" : "heart"
+                    cell.heartIcon?.image = UIImage(named: hIcon)
                 }
             }
+        
         }
         
         return cell
@@ -180,7 +143,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
                 genres.append(gen)
             }
             
-            let albumImage = self.imagesDict[albumId]
+            let albumImage = ImagesDict.shared.imagesDict[albumId]
             let hIcon = AlbumsFromCoreData.shared.albums[indexPath.row].isFavorite ? "heartFull" : "heart"
             let heartImage = UIImage(named: hIcon)
             

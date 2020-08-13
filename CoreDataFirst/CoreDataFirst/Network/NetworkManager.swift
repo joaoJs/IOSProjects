@@ -54,7 +54,7 @@ extension NetworkManager {
         
     }
     
-    func fetchAlbumImage(albumImgUrl: String, completion: @escaping ImageHandler) {
+    func fetchAlbumImage(albumId: String, albumImgUrl: String, completion: @escaping ImageHandler) {
         
         guard let url = URL(string: albumImgUrl) else {
             completion(.failure(.badURL))
