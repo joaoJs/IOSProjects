@@ -62,7 +62,7 @@ class AlbumViewModel {
         self.error = errorHandler
     }
     
-    func fetchMovies() {
+    func fetchAlbums() {
             
             self.service.fetchAlbums(firstUrl: firstUrl){ (result) in
                 switch result {
@@ -123,6 +123,16 @@ class AlbumViewModel {
             }
         
         
+    }
+    
+    func fetchDataFromCoreData(i: Int, closure: @escaping (String,String,String,String,Bool) -> ()) {
+        guard let imageUrl = AlbumsFromCoreData.shared.albums[i].artworkUrl100 else {return}
+        guard let albumId = AlbumsFromCoreData.shared.albums[i].id else {return }
+        guard let albumName = AlbumsFromCoreData.shared.albums[i].name else {return }
+        guard let artistName = AlbumsFromCoreData.shared.albums[i].artistName else {return }
+        let isFavorite = AlbumsFromCoreData.shared.albums[i].isFavorite
+        
+        closure(imageUrl,albumId,albumName,artistName,isFavorite)
     }
 
     
