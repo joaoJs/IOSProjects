@@ -78,8 +78,8 @@
             filePath = "MusicAlbums/ViewModel/PokemonViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "fetchSprites(index:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "MusicAlbums/ViewModel/PokemonViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "fetchSprites(index:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -110,58 +110,10 @@
             filePath = "MusicAlbums/ViewController/ViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "ViewController"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C830120F-6FFF-44A9-B57D-DA97DB1B1562"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicAlbums/ViewModel/PokemonViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "fetchPokes()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C830120F-6FFF-44A9-B57D-DA97DB1B1562 - d2cbfd5c5479c06d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MusicAlbums.PokemonViewModel.fetchPokes() -&gt; ()"
-                  moduleName = "MusicAlbums"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joaocampos/Desktop/EIT/projects/MusicAlbums/MusicAlbums/ViewModel/PokemonViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "44"
-                  endingLineNumber = "44"
-                  offsetFromSymbolStart = "22">
-               </Location>
-               <Location
-                  uuid = "C830120F-6FFF-44A9-B57D-DA97DB1B1562 - 29adc97b3e58d808"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.ResponseObj&gt;) -&gt; () in MusicAlbums.PokemonViewModel.fetchPokes() -&gt; ()"
-                  moduleName = "MusicAlbums"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joaocampos/Desktop/EIT/projects/MusicAlbums/MusicAlbums/ViewModel/PokemonViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "46"
-                  endingLineNumber = "46"
-                  offsetFromSymbolStart = "125">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -190,8 +142,8 @@
             filePath = "MusicAlbums/ViewController/ViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -254,8 +206,8 @@
             filePath = "MusicAlbums/ViewController/ViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "ViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -270,8 +222,8 @@
             filePath = "MusicAlbums/ViewController/ViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "ViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -286,8 +238,8 @@
             filePath = "MusicAlbums/ViewModel/PokemonViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "fetchSprites(index:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -302,8 +254,8 @@
             filePath = "MusicAlbums/ViewModel/PokemonViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "fetchPokes()"
             landmarkType = "7">
             <Locations>
@@ -338,6 +290,145 @@
                   offsetFromSymbolStart = "125">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FACFDDF3-CCE3-4D36-878F-D913110DC655"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MusicAlbumsTests/MusicAlbumsTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "MusicAlbumsTests"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "FACFDDF3-CCE3-4D36-878F-D913110DC655 - 3544197cf929860c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MusicAlbumsTests.MusicAlbumsTests.vm.getter : Swift.Optional&lt;MusicAlbums.PokemonViewModel&gt;"
+                  moduleName = "MusicAlbumsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joaocampos/Desktop/EIT/projects/MusicAlbums/MusicAlbumsTests/MusicAlbumsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "126">
+               </Location>
+               <Location
+                  uuid = "FACFDDF3-CCE3-4D36-878F-D913110DC655 - f9169af45b033618"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MusicAlbumsTests.MusicAlbumsTests.vm.setter : Swift.Optional&lt;MusicAlbums.PokemonViewModel&gt;"
+                  moduleName = "MusicAlbumsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joaocampos/Desktop/EIT/projects/MusicAlbums/MusicAlbumsTests/MusicAlbumsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "164">
+               </Location>
+               <Location
+                  uuid = "FACFDDF3-CCE3-4D36-878F-D913110DC655 - 2489d7e8a469320f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MusicAlbumsTests.MusicAlbumsTests.vm.modify : Swift.Optional&lt;MusicAlbums.PokemonViewModel&gt;"
+                  moduleName = "MusicAlbumsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joaocampos/Desktop/EIT/projects/MusicAlbums/MusicAlbumsTests/MusicAlbumsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  uuid = "FACFDDF3-CCE3-4D36-878F-D913110DC655 - 8d279e3d25b68d6a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MusicAlbumsTests.MusicAlbumsTests.vm.modify : Swift.Optional&lt;MusicAlbums.PokemonViewModel&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "MusicAlbumsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joaocampos/Desktop/EIT/projects/MusicAlbums/MusicAlbumsTests/MusicAlbumsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  uuid = "FACFDDF3-CCE3-4D36-878F-D913110DC655 - 3ac7eb7f4dcddc30"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MusicAlbumsTests.MusicAlbumsTests.init(invocation: Swift.Optional&lt;__C.NSInvocation&gt;) -&gt; MusicAlbumsTests.MusicAlbumsTests"
+                  moduleName = "MusicAlbumsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joaocampos/Desktop/EIT/projects/MusicAlbums/MusicAlbumsTests/MusicAlbumsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "79">
+               </Location>
+               <Location
+                  uuid = "FACFDDF3-CCE3-4D36-878F-D913110DC655 - 65d6715831c91610"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MusicAlbumsTests.MusicAlbumsTests.init(selector: ObjectiveC.Selector) -&gt; MusicAlbumsTests.MusicAlbumsTests"
+                  moduleName = "MusicAlbumsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joaocampos/Desktop/EIT/projects/MusicAlbums/MusicAlbumsTests/MusicAlbumsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "79">
+               </Location>
+               <Location
+                  uuid = "FACFDDF3-CCE3-4D36-878F-D913110DC655 - f59bdc216c67d3c4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MusicAlbumsTests.MusicAlbumsTests.init() -&gt; MusicAlbumsTests.MusicAlbumsTests"
+                  moduleName = "MusicAlbumsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joaocampos/Desktop/EIT/projects/MusicAlbums/MusicAlbumsTests/MusicAlbumsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "63">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "58F6B64E-ECE4-4EC3-9768-EAD984CE5FE4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MusicAlbumsTests/MusicAlbumsTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "testImagesDict()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

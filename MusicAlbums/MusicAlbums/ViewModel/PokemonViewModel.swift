@@ -12,7 +12,6 @@ class PokemonViewModel: NSObject {
     
     var service: NetworkManager
     var pokes: [Pokemon] = []
-    var offset: Int = 0
     var imagesDict: [String: String] = [:]
     
     var completion: (() -> ())?
@@ -34,25 +33,12 @@ extension PokemonViewModel {
     
     @objc
     func fetchPokes() {
-        
-//        var pageNumber = 1
-//        if let pResult = self.pageResult {
-//            pageNumber = pResult.page
-//        }
-        
-        
-            self.service.fetchPokemon { (res: ResponseObj?) in
-                        
-                        guard let res = res, let results = res.results as? [Pokemon] else { return }
-//                        self.pageResult = page
-                        self.pokes.append(contentsOf: results)
-                        self.completion?()
-                    }
-        
-        
-        
-        
-        
+        self.service.fetchPokemon { (res: ResponseObj?) in
+            
+            guard let res = res, let results = res.results as? [Pokemon] else { return }
+            self.pokes.append(contentsOf: results)
+            self.completion?()
+        }
     }
     
     @objc
@@ -93,7 +79,11 @@ extension PokemonViewModel {
     
     @objc (titleWithIndex:)
     func name(index: Int) -> String {
-        return self.pokes[index].name
+        if (self.pokes.count >= index) {
+            return self.pokes[index].name
+        } else {
+            return "No pokemons yet"
+        }
     }
     
 //    @objc (posterImageWithIndex:)

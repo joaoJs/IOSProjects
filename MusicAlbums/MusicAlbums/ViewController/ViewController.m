@@ -31,11 +31,6 @@
     //[self.vm fetchPokes];
     [self setUpViewModel];
     [self.vm fetchPokes];
-    [self.vm bindWithCompletion:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    }];
 }
 
 - (void)setUp {
